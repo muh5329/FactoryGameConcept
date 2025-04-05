@@ -3,6 +3,8 @@
 
 ## Build Command
 
-make 
+make build
+make run
+
 
  -> out.exec
