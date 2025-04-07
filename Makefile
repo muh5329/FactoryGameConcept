@@ -7,10 +7,8 @@ PLATFORM := $(shell uname)
 
 ifeq ($(PLATFORM), Darwin)
 	COMPILER = clang
-	BULLET_INCLUDE = -I/opt/homebrew/Cellar/bullet/3.25
-	BULLET_LIBS = -L/opt/homebrew/Cellar/bullet/3.25 -lBulletDynamics -lBulletCollision -lLinearMath
 	INCLUDE_PATHS += $(BULLET_INCLUDE)
-	LIB_OPTS = $(BULLET_LIBS) -Llib/darwin/ -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL -lraylib
+	LIB_OPTS = -Llib/darwin/ -framework CoreVideo -framework IOKit -framework Cocoa -framework GLUT -framework OpenGL -lraylib
 endif
 
 build:
