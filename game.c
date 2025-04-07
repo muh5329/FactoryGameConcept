@@ -12,6 +12,7 @@
 #define GRID_SIZE 25
 
 typedef struct {
+    bool active;
     Vector3 position;
     Vector3 target;
     bool selected;
@@ -19,8 +20,9 @@ typedef struct {
     bool attacking;
     int targetIndex;
 } Unit;
-
-Unit units[MAX_UNITS];
+// Globals
+Camera camera ;
+Unit units[MAX_UNITS] = { 0 };
 int selectedUnit = -1;
 
 void InitUnits() {
@@ -36,7 +38,7 @@ void InitUnits() {
 
 void DrawUnits() {
     for (int i = 0; i < MAX_UNITS; i++) {
-        Color color = (i == selectedUnit) ? RED : BLUE;
+        Color color = units[i].selected ? RED : BLUE;
         DrawCube(units[i].position, 0.5f, 0.5f, 0.5f, color);
     }
 }
@@ -64,6 +66,23 @@ Vector3 GetRayGroundIntersection(Ray ray) {
     return (Vector3){ ray.position.x + t * ray.direction.x, 0, ray.position.z + t * ray.direction.z };
 }
 
+void SelectUnitAtMouse(Camera camera) {
+    Vector2 mouse = GetMousePosition();
+    
+    for (int i = 0; i < MAX_UNITS; i++) {
+        Vector2 screenPos = GetWorldToScreen(units[i].position, camera);
+        if (CheckCollisionPointCircle(mouse, screenPos, 10.0f)) {
+            // Deselect others
+            TraceLog(LOG_INFO, "enter \n");
+            for (int j = 0; j < MAX_UNITS; j++) units[j].selected = false;
+            units[i].selected = true;
+            TraceLog(LOG_INFO, "True %d\n", i);
+            break;
+        }
+    }
+}
+
+
 void HandleInput(Camera3D *camera) {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
         Ray ray = GetMouseRay(GetMousePosition(), *camera);
@@ -71,16 +90,21 @@ void HandleInput(Camera3D *camera) {
             if (GetRayCollisionBox(ray, (BoundingBox){
                 (Vector3){units[i].position.x - 0.25f, 0, units[i].position.z - 0.25f},
                 (Vector3){units[i].position.x + 0.25f, 0.5f, units[i].position.z + 0.25f}}).hit) {
-                selectedUnit = i;
+                units[i].selected = true;
                 break;
             }
         }
     }
-    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON) && selectedUnit != -1) {
+    if (IsMouseButtonPressed(MOUSE_RIGHT_BUTTON) ) {
         Ray ray = GetMouseRay(GetMousePosition(), *camera);
         Vector3 targetPos = GetRayGroundIntersection(ray);
-        units[selectedUnit].target = targetPos;
-        units[selectedUnit].moving = true;
+        for (int i = 0; i < MAX_UNITS; i++) {
+            if (units[i].selected == true){
+                // TraceLog(LOG_INFO, "True %d\n", i);
+                units[i].target = targetPos;
+                units[i].moving = true;
+            }
+        }
     }
 }
 
@@ -123,7 +147,7 @@ int main(void) {
                 fminf(dragStart.x, dragEnd.x), fminf(dragStart.y, dragEnd.y), 
                 fabsf(dragStart.x - dragEnd.x), fabsf(dragStart.y - dragEnd.y)
             };
-            //SelectUnitAtMouse();
+            SelectUnitAtMouse(camera);
         }
 
 
@@ -147,6 +171,7 @@ int main(void) {
                 fabsf(mousePos.x - dragStart.x),
                 fabsf(mousePos.y - dragStart.y)
             }, 1, GREEN);
+            
         }
 
         EndDrawing();
