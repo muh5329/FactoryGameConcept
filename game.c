@@ -68,15 +68,12 @@ Vector3 GetRayGroundIntersection(Ray ray) {
 
 void SelectUnitAtMouse(Camera camera) {
     Vector2 mouse = GetMousePosition();
-    
     for (int i = 0; i < MAX_UNITS; i++) {
         Vector2 screenPos = GetWorldToScreen(units[i].position, camera);
         if (CheckCollisionPointCircle(mouse, screenPos, 10.0f)) {
             // Deselect others
-            TraceLog(LOG_INFO, "enter \n");
             for (int j = 0; j < MAX_UNITS; j++) units[j].selected = false;
             units[i].selected = true;
-            TraceLog(LOG_INFO, "True %d\n", i);
             break;
         }
     }
