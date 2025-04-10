@@ -140,10 +140,10 @@ int main(void) {
         if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
             dragEnd = GetMousePosition();
             isDragging = false;
-            Rectangle selection = (Rectangle){ 
-                fminf(dragStart.x, dragEnd.x), fminf(dragStart.y, dragEnd.y), 
-                fabsf(dragStart.x - dragEnd.x), fabsf(dragStart.y - dragEnd.y)
-            };
+            // Rectangle selection = (Rectangle){ 
+            //     fminf(dragStart.x, dragEnd.x), fminf(dragStart.y, dragEnd.y), 
+            //     fabsf(dragStart.x - dragEnd.x), fabsf(dragStart.y - dragEnd.y)
+            // };
             SelectUnitAtMouse(camera);
         }
 
