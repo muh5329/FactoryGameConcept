@@ -79,6 +79,18 @@ void SelectUnitAtMouse(Camera camera) {
     }
 }
 
+void SelectUnitsUnderRectangle(Camera camera,Rectangle rectangle) {
+    Vector2 mouse = GetMousePosition();
+    for (int j = 0; j < MAX_UNITS; j++) units[j].selected = false;
+    for (int i = 0; i < MAX_UNITS; i++) {
+        Vector2 screenPos = GetWorldToScreen(units[i].position, camera);
+        if (CheckCollisionPointRec(screenPos, rectangle)) {
+            // Deselect others
+            units[i].selected = true;
+        }
+    }
+}
+
 
 void HandleInput(Camera3D *camera) {
     if (IsMouseButtonPressed(MOUSE_LEFT_BUTTON)) {
@@ -140,11 +152,11 @@ int main(void) {
         if (IsMouseButtonReleased(MOUSE_LEFT_BUTTON)) {
             dragEnd = GetMousePosition();
             isDragging = false;
-            // Rectangle selection = (Rectangle){ 
-            //     fminf(dragStart.x, dragEnd.x), fminf(dragStart.y, dragEnd.y), 
-            //     fabsf(dragStart.x - dragEnd.x), fabsf(dragStart.y - dragEnd.y)
-            // };
-            SelectUnitAtMouse(camera);
+            Rectangle selection = (Rectangle){ 
+                fminf(dragStart.x, dragEnd.x), fminf(dragStart.y, dragEnd.y), 
+                fabsf(dragStart.x - dragEnd.x), fabsf(dragStart.y - dragEnd.y)
+            };
+            SelectUnitsUnderRectangle(camera, selection);
         }
 
 

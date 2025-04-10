@@ -8,3 +8,17 @@ make run
 
 
  -> out.exec
+
+
+## Roadmap
+
+[] Drag movement
+[] Pathfinding
+[] Physics
+[] UI
+[] Menu system
+
+
+## TODO
+
+[] Fix camera movement
