@@ -4,7 +4,7 @@
 # compile CXX with /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/Users/muneebhaq/Documents/projects/c_lib/bullet3/install -I/Users/muneebhaq/Documents/projects/FactoryGameConcept/./include
+CXX_INCLUDES = -I/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/include/bullet -I/Users/muneebhaq/Documents/projects/FactoryGameConcept/./include
 
 CXX_FLAGSarm64 = -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk -mmacosx-version-min=15.3
 

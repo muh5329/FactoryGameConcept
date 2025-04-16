@@ -14,7 +14,8 @@ if(APPLE)
     
     # Bullet Physics
     set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/")
-    include_directories(${BULLET_DIR})
+    include_directories(${BULLET_DIR}/include/bullet) 
+    link_directories(${BULLET_DIR}/lib)
 
     # Raylib
     set(RAYLIB_DIR "./include/")
@@ -40,14 +41,14 @@ else() # Linux
     message(STATUS "Configuring for Linux")
 
     # Bullet Physics
-    set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3")
-    include_directories(${BULLET_DIR}/src)
-    link_directories(${BULLET_DIR}/build/lib)
+    set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/lib/")
+    include_directories(${BULLET_DIR}/include/bullet) 
+    link_directories(${BULLET_DIR}/lib)
 
     # Raylib
     set(RAYLIB_DIR "./include/")
-    include_directories(${RAYLIB_DIR}/src)
-    link_directories(${RAYLIB_DIR}/src)
+    include_directories(${RAYLIB_DIR})
+    link_directories(${RAYLIB_DIR})
 
     add_executable(FactoryGameConcept ${SOURCES})
 

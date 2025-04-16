@@ -69,31 +69,47 @@ include CMakeFiles/FactoryGameConcept.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/FactoryGameConcept.dir/flags.make
 
-CMakeFiles/FactoryGameConcept.dir/game2.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
-CMakeFiles/FactoryGameConcept.dir/game2.cpp.o: game2.cpp
-CMakeFiles/FactoryGameConcept.dir/game2.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FactoryGameConcept.dir/game2.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/game2.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/game2.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/game2.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/game2.cpp
+CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
+CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o: CapsuleColiderExample.cpp
+CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/CapsuleColiderExample.cpp
 
-CMakeFiles/FactoryGameConcept.dir/game2.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FactoryGameConcept.dir/game2.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/muneebhaq/Documents/projects/FactoryGameConcept/game2.cpp > CMakeFiles/FactoryGameConcept.dir/game2.cpp.i
+CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/muneebhaq/Documents/projects/FactoryGameConcept/CapsuleColiderExample.cpp > CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.i
 
-CMakeFiles/FactoryGameConcept.dir/game2.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FactoryGameConcept.dir/game2.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/muneebhaq/Documents/projects/FactoryGameConcept/game2.cpp -o CMakeFiles/FactoryGameConcept.dir/game2.cpp.s
+CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/muneebhaq/Documents/projects/FactoryGameConcept/CapsuleColiderExample.cpp -o CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.s
+
+CMakeFiles/FactoryGameConcept.dir/game.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
+CMakeFiles/FactoryGameConcept.dir/game.cpp.o: game.cpp
+CMakeFiles/FactoryGameConcept.dir/game.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FactoryGameConcept.dir/game.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/game.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/game.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/game.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/game.cpp
+
+CMakeFiles/FactoryGameConcept.dir/game.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FactoryGameConcept.dir/game.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/muneebhaq/Documents/projects/FactoryGameConcept/game.cpp > CMakeFiles/FactoryGameConcept.dir/game.cpp.i
+
+CMakeFiles/FactoryGameConcept.dir/game.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FactoryGameConcept.dir/game.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/muneebhaq/Documents/projects/FactoryGameConcept/game.cpp -o CMakeFiles/FactoryGameConcept.dir/game.cpp.s
 
 # Object files for target FactoryGameConcept
 FactoryGameConcept_OBJECTS = \
-"CMakeFiles/FactoryGameConcept.dir/game2.cpp.o"
+"CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o" \
+"CMakeFiles/FactoryGameConcept.dir/game.cpp.o"
 
 # External object files for target FactoryGameConcept
 FactoryGameConcept_EXTERNAL_OBJECTS =
 
-FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/game2.cpp.o
+FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o
+FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/game.cpp.o
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/build.make
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable FactoryGameConcept"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable FactoryGameConcept"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FactoryGameConcept.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

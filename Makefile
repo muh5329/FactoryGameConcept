@@ -129,29 +129,53 @@ FactoryGameConcept/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/build
 .PHONY : FactoryGameConcept/fast
 
-game2.o: game2.cpp.o
-.PHONY : game2.o
+CapsuleColiderExample.o: CapsuleColiderExample.cpp.o
+.PHONY : CapsuleColiderExample.o
 
 # target to build an object file
-game2.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game2.cpp.o
-.PHONY : game2.cpp.o
+CapsuleColiderExample.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o
+.PHONY : CapsuleColiderExample.cpp.o
 
-game2.i: game2.cpp.i
-.PHONY : game2.i
+CapsuleColiderExample.i: CapsuleColiderExample.cpp.i
+.PHONY : CapsuleColiderExample.i
 
 # target to preprocess a source file
-game2.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game2.cpp.i
-.PHONY : game2.cpp.i
+CapsuleColiderExample.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.i
+.PHONY : CapsuleColiderExample.cpp.i
 
-game2.s: game2.cpp.s
-.PHONY : game2.s
+CapsuleColiderExample.s: CapsuleColiderExample.cpp.s
+.PHONY : CapsuleColiderExample.s
 
 # target to generate assembly for a file
-game2.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game2.cpp.s
-.PHONY : game2.cpp.s
+CapsuleColiderExample.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.s
+.PHONY : CapsuleColiderExample.cpp.s
+
+game.o: game.cpp.o
+.PHONY : game.o
+
+# target to build an object file
+game.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game.cpp.o
+.PHONY : game.cpp.o
+
+game.i: game.cpp.i
+.PHONY : game.i
+
+# target to preprocess a source file
+game.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game.cpp.i
+.PHONY : game.cpp.i
+
+game.s: game.cpp.s
+.PHONY : game.s
+
+# target to generate assembly for a file
+game.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game.cpp.s
+.PHONY : game.cpp.s
 
 # Help Target
 help:
@@ -162,9 +186,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... FactoryGameConcept"
-	@echo "... game2.o"
-	@echo "... game2.i"
-	@echo "... game2.s"
+	@echo "... CapsuleColiderExample.o"
+	@echo "... CapsuleColiderExample.i"
+	@echo "... CapsuleColiderExample.s"
+	@echo "... game.o"
+	@echo "... game.i"
+	@echo "... game.s"
 .PHONY : help
 
 
