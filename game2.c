@@ -105,7 +105,7 @@ void ShutdownPhysics() {
 
 void UpdateCapsule(Capsule* capsule, float delta) {
     Vector3 direction = {0};
-
+87
     if (IsKeyDown(KEY_W)) direction.z -= 1.0f;
     if (IsKeyDown(KEY_S)) direction.z += 1.0f;
     if (IsKeyDown(KEY_A)) direction.x -= 1.0f;
