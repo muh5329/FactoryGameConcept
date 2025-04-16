@@ -30,10 +30,11 @@ make run
 [bullet3](https://github.com/bulletphysics/bullet3)
 
 Pull Repo
-mkdir build
-cd build
-cmake ..
-make
+cd REPO
+mkdir -p build && cd build
+cmake .. -DBUILD_SHARED_LIBS=ON -DCMAKE_INSTALL_PREFIX=../install
+make -j$(sysctl -n hw.logicalcpu)  # Or just 'make' if unsure
+make install
 
 Link Library to CmakeList.txt BULLET_DIR src
 
@@ -47,5 +48,5 @@ brew install raylib
 
 mkdir build
 cd build
-cmake ..
+cmake --build ..
 make

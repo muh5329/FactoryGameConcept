@@ -1,36 +1,34 @@
 cmake_minimum_required(VERSION 3.10)
-project(YourProject C)
+project(FactoryGameConcept CXX)
 
-# Set C standard
-set(CMAKE_C_STANDARD 99)
-
-# Source files
-file(GLOB SOURCES "*.c")
+# Set C++ standard
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # Source files
-# set(SOURCES
-#     game2.c
-#     # Add other source files here
-# )
+file(GLOB SOURCES "*.cpp")  # now using .cpp
 
 # Platform-specific configuration
 if(APPLE)
     message(STATUS "Configuring for macOS")
     
-    # Bullet Physics setup
-    set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/src")
-    include_directories(${BULLET_DIR}/src)
+    # Bullet Physics
+    set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/")
+    include_directories(${BULLET_DIR})
 
-    # Raylib (macOS framework-style linking)
-    set(RAYLIB_DIR "include/")
-    include_directories(${RAYLIB_DIR}/src)
+    # Raylib
+    set(RAYLIB_DIR "./include/")
+    include_directories(${RAYLIB_DIR})
 
-    add_executable(YourProject ${SOURCES})
+    add_executable(FactoryGameConcept ${SOURCES})
 
-    target_link_directories(YourProject PRIVATE lib/darwin/)
-    
-    target_link_libraries(YourProject
+    target_link_directories(FactoryGameConcept PRIVATE lib/darwin/)
+
+    target_link_libraries(FactoryGameConcept
         raylib
+        BulletDynamics
+        BulletCollision
+        LinearMath
         "-framework CoreVideo"
         "-framework IOKit"
         "-framework Cocoa"
@@ -38,31 +36,31 @@ if(APPLE)
         "-framework OpenGL"
     )
 
-else() # Assume Linux
+else() # Linux
     message(STATUS "Configuring for Linux")
 
-    # Bullet Physics setup
-    set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/src")
+    # Bullet Physics
+    set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3")
     include_directories(${BULLET_DIR}/src)
-    link_directories(${BULLET_DIR}/lib)
+    link_directories(${BULLET_DIR}/build/lib)
 
-    # Raylib setup
-    set(RAYLIB_DIR "include/")
+    # Raylib
+    set(RAYLIB_DIR "./include/")
     include_directories(${RAYLIB_DIR}/src)
     link_directories(${RAYLIB_DIR}/src)
 
-    add_executable(YourProject ${SOURCES})
+    add_executable(FactoryGameConcept ${SOURCES})
 
-    target_link_libraries(YourProject
+    target_link_libraries(FactoryGameConcept
         raylib
+        BulletDynamics
+        BulletCollision
+        LinearMath
         GL
         m
         pthread
         dl
         rt
         X11
-        BulletDynamics
-        BulletCollision
-        LinearMath
     )
 endif()

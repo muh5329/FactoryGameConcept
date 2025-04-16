@@ -117,65 +117,41 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named YourProject
+# Target rules for targets named FactoryGameConcept
 
 # Build rule for target.
-YourProject: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 YourProject
-.PHONY : YourProject
+FactoryGameConcept: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 FactoryGameConcept
+.PHONY : FactoryGameConcept
 
 # fast build rule for target.
-YourProject/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YourProject.dir/build.make CMakeFiles/YourProject.dir/build
-.PHONY : YourProject/fast
+FactoryGameConcept/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/build
+.PHONY : FactoryGameConcept/fast
 
-game.o: game.c.o
-.PHONY : game.o
-
-# target to build an object file
-game.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YourProject.dir/build.make CMakeFiles/YourProject.dir/game.c.o
-.PHONY : game.c.o
-
-game.i: game.c.i
-.PHONY : game.i
-
-# target to preprocess a source file
-game.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YourProject.dir/build.make CMakeFiles/YourProject.dir/game.c.i
-.PHONY : game.c.i
-
-game.s: game.c.s
-.PHONY : game.s
-
-# target to generate assembly for a file
-game.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YourProject.dir/build.make CMakeFiles/YourProject.dir/game.c.s
-.PHONY : game.c.s
-
-game2.o: game2.c.o
+game2.o: game2.cpp.o
 .PHONY : game2.o
 
 # target to build an object file
-game2.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YourProject.dir/build.make CMakeFiles/YourProject.dir/game2.c.o
-.PHONY : game2.c.o
+game2.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game2.cpp.o
+.PHONY : game2.cpp.o
 
-game2.i: game2.c.i
+game2.i: game2.cpp.i
 .PHONY : game2.i
 
 # target to preprocess a source file
-game2.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YourProject.dir/build.make CMakeFiles/YourProject.dir/game2.c.i
-.PHONY : game2.c.i
+game2.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game2.cpp.i
+.PHONY : game2.cpp.i
 
-game2.s: game2.c.s
+game2.s: game2.cpp.s
 .PHONY : game2.s
 
 # target to generate assembly for a file
-game2.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/YourProject.dir/build.make CMakeFiles/YourProject.dir/game2.c.s
-.PHONY : game2.c.s
+game2.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/game2.cpp.s
+.PHONY : game2.cpp.s
 
 # Help Target
 help:
@@ -185,10 +161,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... YourProject"
-	@echo "... game.o"
-	@echo "... game.i"
-	@echo "... game.s"
+	@echo "... FactoryGameConcept"
 	@echo "... game2.o"
 	@echo "... game2.i"
 	@echo "... game2.s"
