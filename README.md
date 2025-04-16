@@ -22,3 +22,30 @@ make run
 ## TODO
 
 [] Fix camera movement
+
+
+## Prerequisites
+
+-- Install Bullet 
+[bullet3](https://github.com/bulletphysics/bullet3)
+
+Pull Repo
+mkdir build
+cd build
+cmake ..
+make
+
+Link Library to CmakeList.txt BULLET_DIR src
+
+-- Install Raylib 
+[raylib](https://www.raylib.com/)
+
+ -- On MacOsx --
+brew install raylib
+
+## Build Steps
+
+mkdir build
+cd build
+cmake ..
+make
