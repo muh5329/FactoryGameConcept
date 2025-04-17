@@ -3,12 +3,19 @@
 #include <vector>
 #include <iostream>
 #include <algorithm>
+#include "btBulletDynamicsCommon.h"
+
 
 #define TILE_SIZE 32
 #define ATTACK_RANGE 30.0f
 #define UNIT_SPEED 2.0f
 #define GRID_SIZE 25
 #define MAX_UNITS 10
+
+#define GROUND_Y 0.0f
+#define GRAVITY -9.8f
+#define MOVE_SPEED 5.0f
+#define JUMP_FORCE 5.0f
 
 class Unit {
 public:
@@ -45,6 +52,33 @@ public:
         DrawCube(position, 0.5f, 0.5f, 0.5f, color);
     }
 };
+
+class Capsule {
+    public:
+        Vector3 position;
+        float radius;
+        float height;
+        Vector3 velocity;
+        bool grounded;
+        btRigidBody* body = nullptr;
+    
+        Capsule() {
+            position = {0, 2, 0};
+            radius = 0.5f;
+            height = 2.0f;
+            velocity = {0};
+            grounded = false;
+            
+        }
+    
+        void Update(float deltaTime) {
+            
+        }
+    
+        void Draw() const {
+            
+        }
+    };
 
 class Game {
 private:
