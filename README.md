@@ -12,9 +12,9 @@ make run
 
 ## Roadmap
 
-[] Drag movement
+[X] Drag movement
 [] Pathfinding
-[] Physics
+[X] Physics
 [] UI
 [] Menu system
 
