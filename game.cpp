@@ -210,6 +210,7 @@ private:
         }
 
         UpdateCamera();
+        //UpdateCapsuleCamera();
         capsule.UpdateCapsule(&player, deltaTime);
     }
 
@@ -298,7 +299,12 @@ private:
 
         camera.target = { 0.0f, 0.0f, 0.0f }; // Lock target to center
 
-        // Camera follows player
+
+      
+    }
+
+    void UpdateCapsuleCamera() {
+          // Camera follows player
         camera.position = {player.position.x, player.position.y + 2.0f, player.position.z + 6.0f};
         camera.target = {player.position.x, player.position.y + 1.0f, player.position.z};
     }

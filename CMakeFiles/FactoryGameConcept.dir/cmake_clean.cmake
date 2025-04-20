@@ -1,6 +1,4 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o"
-  "CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o.d"
   "CMakeFiles/FactoryGameConcept.dir/game.cpp.o"
   "CMakeFiles/FactoryGameConcept.dir/game.cpp.o.d"
   "FactoryGameConcept"

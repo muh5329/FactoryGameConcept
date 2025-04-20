@@ -129,30 +129,6 @@ FactoryGameConcept/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/build
 .PHONY : FactoryGameConcept/fast
 
-CapsuleColiderExample.o: CapsuleColiderExample.cpp.o
-.PHONY : CapsuleColiderExample.o
-
-# target to build an object file
-CapsuleColiderExample.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.o
-.PHONY : CapsuleColiderExample.cpp.o
-
-CapsuleColiderExample.i: CapsuleColiderExample.cpp.i
-.PHONY : CapsuleColiderExample.i
-
-# target to preprocess a source file
-CapsuleColiderExample.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.i
-.PHONY : CapsuleColiderExample.cpp.i
-
-CapsuleColiderExample.s: CapsuleColiderExample.cpp.s
-.PHONY : CapsuleColiderExample.s
-
-# target to generate assembly for a file
-CapsuleColiderExample.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/CapsuleColiderExample.cpp.s
-.PHONY : CapsuleColiderExample.cpp.s
-
 game.o: game.cpp.o
 .PHONY : game.o
 
@@ -186,9 +162,6 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... FactoryGameConcept"
-	@echo "... CapsuleColiderExample.o"
-	@echo "... CapsuleColiderExample.i"
-	@echo "... CapsuleColiderExample.s"
 	@echo "... game.o"
 	@echo "... game.i"
 	@echo "... game.s"
