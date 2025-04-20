@@ -49,5 +49,6 @@ brew install raylib
 
 mkdir build
 cd build
-cmake --build ..
+cmake ..
+cmake --build .
 make

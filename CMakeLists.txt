@@ -5,27 +5,30 @@ project(FactoryGameConcept CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# Source files
-file(GLOB SOURCES "*.cpp")  # now using .cpp
+# Recursively get all .cpp files in src/
+file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS src/*.cpp)
 
-# Platform-specific configuration
+# Include directory for headers (e.g., raylib.h, raymath.h)
+include_directories(${CMAKE_SOURCE_DIR}/include)
+
+include_directories(${CMAKE_SOURCE_DIR}/src)
+
+# Bullet Physics
+set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/")
+include_directories(${BULLET_DIR}/include/bullet) 
+link_directories(${BULLET_DIR}/lib)
+
+# Add the executable
+add_executable(${PROJECT_NAME} ${SOURCES})
+
+# Platform-specific linking
 if(APPLE)
     message(STATUS "Configuring for macOS")
-    
-    # Bullet Physics
-    set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/")
-    include_directories(${BULLET_DIR}/include/bullet) 
-    link_directories(${BULLET_DIR}/lib)
 
-    # Raylib
-    set(RAYLIB_DIR "./include/")
-    include_directories(${RAYLIB_DIR})
+    # Link Raylib statically (adjust name if needed)
+    target_link_directories(${PROJECT_NAME} PRIVATE ${CMAKE_SOURCE_DIR}/lib/darwin)
 
-    add_executable(FactoryGameConcept ${SOURCES})
-
-    target_link_directories(FactoryGameConcept PRIVATE lib/darwin/)
-
-    target_link_libraries(FactoryGameConcept
+    target_link_libraries(${PROJECT_NAME}
         raylib
         BulletDynamics
         BulletCollision
@@ -37,22 +40,10 @@ if(APPLE)
         "-framework OpenGL"
     )
 
-else() # Linux
+elseif(UNIX)
     message(STATUS "Configuring for Linux")
 
-    # Bullet Physics
-    set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/lib/")
-    include_directories(${BULLET_DIR}/include/bullet) 
-    link_directories(${BULLET_DIR}/lib)
-
-    # Raylib
-    set(RAYLIB_DIR "./include/")
-    include_directories(${RAYLIB_DIR})
-    link_directories(${RAYLIB_DIR})
-
-    add_executable(FactoryGameConcept ${SOURCES})
-
-    target_link_libraries(FactoryGameConcept
+    target_link_libraries(${PROJECT_NAME}
         raylib
         BulletDynamics
         BulletCollision

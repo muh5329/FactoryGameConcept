@@ -1,3 +1,0 @@
-/Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles/FactoryGameConcept.dir
-/Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles/edit_cache.dir
-/Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles/rebuild_cache.dir
