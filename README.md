@@ -19,9 +19,11 @@ make run
 [] Menu system
 
 
+
 ## TODO
 
 [] Fix camera movement
+[] Swap between FPS and RTS Camera
 
 
 ## Prerequisites
