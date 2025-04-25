@@ -26,3 +26,29 @@ class FpsCamera : public  Camera3D{
 
 
 };
+
+class RtsCamera : public Camera3D{
+
+    public: 
+        RtsCamera(){
+            position = { 10.0f, 10.0f, 10.0f };
+            target = { 0.0f, 0.0f, 0.0f };
+            up = { 0.0f, 1.0f, 0.0f };
+            fovy = 45.0f;
+            projection = CAMERA_PERSPECTIVE;
+        }
+        ~RtsCamera(){
+
+        }
+
+        // Call this every frame to update the camera based on input
+        void Update() {
+            if (IsKeyDown(KEY_W)) position.z -= 0.1f;
+            if (IsKeyDown(KEY_S)) position.z += 0.1f;
+            if (IsKeyDown(KEY_A)) position.x -= 0.1f;
+            if (IsKeyDown(KEY_D)) position.x += 0.1f;
+    
+            target = { 0.0f, 0.0f, 0.0f }; // Lock target to center
+        }
+    private:
+};

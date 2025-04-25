@@ -185,17 +185,21 @@ private:
         DrawText("3D Isometric RTS", 10, 10, 20, BLACK);
 
         if (isDragging) {
-            Vector2 mousePos = GetMousePosition();
-            Rectangle rect = {
-                std::min(dragStart.x, mousePos.x),
-                std::min(dragStart.y, mousePos.y),
-                std::fabs(mousePos.x - dragStart.x),
-                std::fabs(mousePos.y - dragStart.y)
-            };
-            DrawRectangleLinesEx(rect, 1, GREEN);
+            DrawRectangleDrag();
         }
 
         EndDrawing();
+    }
+
+    void DrawRectangleDrag(){
+        Vector2 mousePos = GetMousePosition();
+        Rectangle rect = {
+            std::min(dragStart.x, mousePos.x),
+            std::min(dragStart.y, mousePos.y),
+            std::fabs(mousePos.x - dragStart.x),
+            std::fabs(mousePos.y - dragStart.y)
+        };
+        DrawRectangleLinesEx(rect, 1, GREEN);
     }
 
     void DrawPlayer() {
