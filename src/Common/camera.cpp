@@ -29,6 +29,10 @@ class FpsCamera : public  Camera3D{
 
 class RtsCamera : public Camera3D{
 
+    public:
+        bool toggle;
+        
+
     public: 
         RtsCamera(){
             position = { 10.0f, 10.0f, 10.0f };
