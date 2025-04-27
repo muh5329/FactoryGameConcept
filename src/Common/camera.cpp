@@ -31,7 +31,7 @@ class RtsCamera : public Camera3D{
 
     public:
         bool toggle;
-        
+        int scrollSpeed = 4; 
 
     public: 
         RtsCamera(){
@@ -51,6 +51,10 @@ class RtsCamera : public Camera3D{
             if (IsKeyDown(KEY_S)) position.z += 0.1f;
             if (IsKeyDown(KEY_A)) position.x -= 0.1f;
             if (IsKeyDown(KEY_D)) position.x += 0.1f;
+        
+            // Test Pitch and Yaw
+            position.y -= (int)(GetMouseWheelMove()*scrollSpeed);
+
     
             target = { 0.0f, 0.0f, 0.0f }; // Lock target to center
         }

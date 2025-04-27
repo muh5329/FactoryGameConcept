@@ -54,3 +54,4 @@ cd build
 cmake ..
 cmake --build .
 make
+./FactoryGameConcept 
