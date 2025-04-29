@@ -56,7 +56,7 @@ private:
     Capsule capsule;
     CapsuleObj player;
     World world;
-
+    int scrollSpeed = 4; 
 public:
     Game() {
         InitWindow(800, 600, "3D Isometric RTS");
@@ -170,6 +170,8 @@ private:
         if (IsKeyDown(KEY_D)) camera.position.x += 0.1f;
 
         camera.target = { 0.0f, 0.0f, 0.0f }; // Lock target to center
+        // Test Pitch and Yaw
+        camera.position.y -= (int)(GetMouseWheelMove()*scrollSpeed);
     }
 
 
