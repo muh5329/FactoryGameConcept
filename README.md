@@ -19,6 +19,9 @@ make run
 [] Menu system
 
 
+## Musings
+[Thoughts](Thoughts.md)
+
 
 ## TODO
 
