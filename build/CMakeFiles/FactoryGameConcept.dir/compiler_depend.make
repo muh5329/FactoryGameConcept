@@ -2328,6 +2328,7 @@ CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o: /Users/muneebhaq/Documents/pro
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stddef.h \
   /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/17/include/stdint.h \
   /Users/muneebhaq/Documents/projects/FactoryGameConcept/include/raylib.h \
+  /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/camera.cpp \
   /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/constants.hpp \
   /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Controllers/capsule.h \
   /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Scenes/World/world.h \

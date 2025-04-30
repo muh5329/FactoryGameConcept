@@ -7,7 +7,7 @@
 #include <Controllers/capsule.h>
 #include <Scenes/World/world.h>
 #include <Common/constants.hpp>
-
+#include <Common/camera.cpp>
 
 
 class Unit {
@@ -50,11 +50,11 @@ public:
 class Game {
 private:
     std::vector<Unit> units;
-    Camera3D camera{};
     Vector2 dragStart{}, dragEnd{};
     bool isDragging = false;
-    Capsule capsule;
+    RtsCamera camera;
     CapsuleObj player;
+    Capsule playerCapsule;
     World world;
     int scrollSpeed = 4; 
 public:
@@ -75,15 +75,9 @@ public:
         // Init Bullet
         world.InitializePhysics();
         world.CreateGround();
-        capsule.CreateCapsule(&player, &world);
+        playerCapsule.CreateCapsule(&player, &world);
 
-        
-        camera.position = { 10.0f, 10.0f, 10.0f };
-        camera.target = { 0.0f, 0.0f, 0.0f };
-        camera.up = { 0.0f, 1.0f, 0.0f };
-        camera.fovy = 45.0f;
-        camera.projection = CAMERA_PERSPECTIVE;
-
+       
         for (int i = 0; i < Constants::MAX_UNITS; i++) {
             units.emplace_back();
         }
@@ -108,9 +102,8 @@ private:
         for (auto& unit : units) {
             unit.Update(deltaTime);
         }
-
-        UpdateCamera();
-        capsule.UpdateCapsule(&player, deltaTime);
+        camera.Update();
+        playerCapsule.UpdateCapsule(&player, deltaTime);
     }
 
     void HandleInput() {
@@ -163,16 +156,7 @@ private:
         };
     }
 
-    void UpdateCamera() {
-        if (IsKeyDown(KEY_W)) camera.position.z -= 0.1f;
-        if (IsKeyDown(KEY_S)) camera.position.z += 0.1f;
-        if (IsKeyDown(KEY_A)) camera.position.x -= 0.1f;
-        if (IsKeyDown(KEY_D)) camera.position.x += 0.1f;
-
-        camera.target = { 0.0f, 0.0f, 0.0f }; // Lock target to center
-        // Test Pitch and Yaw
-        camera.position.y -= (int)(GetMouseWheelMove()*scrollSpeed);
-    }
+   
 
 
     void Draw() {

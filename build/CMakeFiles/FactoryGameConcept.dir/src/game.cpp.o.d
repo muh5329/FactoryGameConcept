@@ -905,4 +905,5 @@ CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o: \
   /Users/muneebhaq/Documents/projects/c_lib/bullet3/install/include/bullet/BulletDynamics/Dynamics/btActionInterface.h \
   /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Controllers/capsule.h \
   /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Scenes/World/world.h \
-  /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/constants.hpp
+  /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/constants.hpp \
+  /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/camera.cpp
