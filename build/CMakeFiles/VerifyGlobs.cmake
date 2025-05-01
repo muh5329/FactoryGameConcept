@@ -7,6 +7,7 @@ file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/Users/muneebhaq/Documents/pr
 set(OLD_GLOB
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/camera.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Controllers/capsule.cpp"
+  "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/NPC/unit.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Scenes/World/world.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/game.cpp"
   )

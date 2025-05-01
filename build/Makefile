@@ -178,6 +178,30 @@ src/Controllers/capsule.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.s
 .PHONY : src/Controllers/capsule.cpp.s
 
+src/Entities/NPC/unit.o: src/Entities/NPC/unit.cpp.o
+.PHONY : src/Entities/NPC/unit.o
+
+# target to build an object file
+src/Entities/NPC/unit.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o
+.PHONY : src/Entities/NPC/unit.cpp.o
+
+src/Entities/NPC/unit.i: src/Entities/NPC/unit.cpp.i
+.PHONY : src/Entities/NPC/unit.i
+
+# target to preprocess a source file
+src/Entities/NPC/unit.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.i
+.PHONY : src/Entities/NPC/unit.cpp.i
+
+src/Entities/NPC/unit.s: src/Entities/NPC/unit.cpp.s
+.PHONY : src/Entities/NPC/unit.s
+
+# target to generate assembly for a file
+src/Entities/NPC/unit.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.s
+.PHONY : src/Entities/NPC/unit.cpp.s
+
 src/Scenes/World/world.o: src/Scenes/World/world.cpp.o
 .PHONY : src/Scenes/World/world.o
 
@@ -241,6 +265,9 @@ help:
 	@echo "... src/Controllers/capsule.o"
 	@echo "... src/Controllers/capsule.i"
 	@echo "... src/Controllers/capsule.s"
+	@echo "... src/Entities/NPC/unit.o"
+	@echo "... src/Entities/NPC/unit.i"
+	@echo "... src/Entities/NPC/unit.s"
 	@echo "... src/Scenes/World/world.o"
 	@echo "... src/Scenes/World/world.i"
 	@echo "... src/Scenes/World/world.s"
