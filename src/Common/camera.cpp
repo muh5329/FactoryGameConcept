@@ -73,6 +73,19 @@ class RtsCamera : public Camera3D {
                 Vector3 zoomMove = Vector3Scale(zoomDir, wheel * scrollSpeed);
                 position = Vector3Add(position, zoomMove);
             }
+
+             // Middle mouse drag movement
+            if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) {
+                Vector2 mouseDelta = GetMouseDelta();
+                float dragSpeed = 0.01f; // Adjust as needed for sensitivity
+
+                // Move opposite to mouse drag direction to simulate "grabbing" the world
+                position = Vector3Subtract(position, Vector3Scale(right, mouseDelta.x * dragSpeed));
+                target = Vector3Subtract(target, Vector3Scale(right, mouseDelta.x * dragSpeed));
+
+                position = Vector3Add(position, Vector3Scale(forward, mouseDelta.y * dragSpeed));
+                target = Vector3Add(target, Vector3Scale(forward, mouseDelta.y * dragSpeed));
+            }
         }
 };
     
