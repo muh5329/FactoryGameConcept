@@ -1,5 +1,5 @@
 #include "raylib.h"
-
+#include "raymath.h"
 class FpsCamera : public  Camera3D{
 
     public:
@@ -27,46 +27,52 @@ class FpsCamera : public  Camera3D{
 
 };
 
-class RtsCamera : public Camera3D{
-
+class RtsCamera : public Camera3D {
     public:
         bool toggle;
-        int scrollSpeed = 4; 
-
-    public: 
-        RtsCamera(){
+        int scrollSpeed = 4;
+    
+    public:
+        RtsCamera() {
             position = { 10.0f, 10.0f, 10.0f };
-            target = { 0.0f, 0.0f, 0.0f };
+            target = { position.x + -1.0f, position.y - 1.0f, position.z + -1.0f }; // Maintain isometric view
             up = { 0.0f, 1.0f, 0.0f };
             fovy = 45.0f;
             projection = CAMERA_PERSPECTIVE;
         }
-        ~RtsCamera(){
-
-        }
-
-        // Call this every frame to update the camera based on input
-        void Update() {
-            if (IsKeyDown(KEY_W)){
-                position.z -= 0.1f;
-                position.x -= 0.1f;
-            } 
-            if (IsKeyDown(KEY_S)){
-                position.z += 0.1f;
-            } 
-            if (IsKeyDown(KEY_A)) {
-                position.x -= 0.1f;
-            }
-            if (IsKeyDown(KEY_D)){
-                position.x += 0.1f;
-            } 
-        
-            // Test Pitch and Yaw
-            position.y -= (int)(GetMouseWheelMove()*scrollSpeed);
-
-            if (position.y < 0) position.y  = 0;
     
-            target = { 0.0f, 0.0f, 0.0f }; // Lock target to center
+        void Update() {
+            float moveSpeed = 0.2f;
+    
+            // Right vector from camera direction
+            Vector3 direction = Vector3Normalize(Vector3Subtract(target, position));
+            Vector3 right = Vector3Normalize(Vector3CrossProduct(direction, up));
+            Vector3 forward = Vector3Normalize(Vector3CrossProduct(up, right));
+    
+            if (IsKeyDown(KEY_W)) {
+                position = Vector3Add(position, Vector3Scale(forward, moveSpeed));
+                target = Vector3Add(target, Vector3Scale(forward, moveSpeed));
+            }
+            if (IsKeyDown(KEY_S)) {
+                position = Vector3Subtract(position, Vector3Scale(forward, moveSpeed));
+                target = Vector3Subtract(target, Vector3Scale(forward, moveSpeed));
+            }
+            if (IsKeyDown(KEY_A)) {
+                position = Vector3Subtract(position, Vector3Scale(right, moveSpeed));
+                target = Vector3Subtract(target, Vector3Scale(right, moveSpeed));
+            }
+            if (IsKeyDown(KEY_D)) {
+                position = Vector3Add(position, Vector3Scale(right, moveSpeed));
+                target = Vector3Add(target, Vector3Scale(right, moveSpeed));
+            }
+    
+            // Zoom in/out (move up/down)
+            float wheel = GetMouseWheelMove();
+            if (wheel != 0.0f) {
+                Vector3 zoomDir = Vector3Normalize(Vector3Subtract(target, position));
+                Vector3 zoomMove = Vector3Scale(zoomDir, wheel * scrollSpeed);
+                position = Vector3Add(position, zoomMove);
+            }
         }
-    private:
 };
+    
