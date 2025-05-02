@@ -47,14 +47,24 @@ class RtsCamera : public Camera3D{
 
         // Call this every frame to update the camera based on input
         void Update() {
-            if (IsKeyDown(KEY_W)) position.z -= 0.1f;
-            if (IsKeyDown(KEY_S)) position.z += 0.1f;
-            if (IsKeyDown(KEY_A)) position.x -= 0.1f;
-            if (IsKeyDown(KEY_D)) position.x += 0.1f;
+            if (IsKeyDown(KEY_W)){
+                position.z -= 0.1f;
+                position.x -= 0.1f;
+            } 
+            if (IsKeyDown(KEY_S)){
+                position.z += 0.1f;
+            } 
+            if (IsKeyDown(KEY_A)) {
+                position.x -= 0.1f;
+            }
+            if (IsKeyDown(KEY_D)){
+                position.x += 0.1f;
+            } 
         
             // Test Pitch and Yaw
             position.y -= (int)(GetMouseWheelMove()*scrollSpeed);
 
+            if (position.y < 0) position.y  = 0;
     
             target = { 0.0f, 0.0f, 0.0f }; // Lock target to center
         }
