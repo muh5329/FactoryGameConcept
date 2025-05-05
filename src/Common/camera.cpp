@@ -66,13 +66,13 @@ class RtsCamera : public Camera3D {
                 target = Vector3Add(target, Vector3Scale(right, moveSpeed));
             }
     
-            // // Zoom in/out (move up/down)
-            // float wheel = GetMouseWheelMove();
-            // if (wheel != 0.0f) {
-            //     Vector3 zoomDir = Vector3Normalize(Vector3Subtract(target, position));
-            //     Vector3 zoomMove = Vector3Scale(zoomDir, wheel * scrollSpeed);
-            //     position = Vector3Add(position, zoomMove);
-            // }
+            // Zoom in/out (move up/down)
+            float wheel = GetMouseWheelMove();
+            if (wheel >= 0.0f) {
+                Vector3 zoomDir = Vector3Normalize(Vector3Subtract(target, position));
+                Vector3 zoomMove = Vector3Scale(zoomDir, wheel * scrollSpeed);
+                position = Vector3Add(position, zoomMove);
+            }
 
              // Middle mouse drag movement
             if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) {
