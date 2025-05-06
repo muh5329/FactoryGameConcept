@@ -66,13 +66,25 @@ class RtsCamera : public Camera3D {
                 target = Vector3Add(target, Vector3Scale(right, moveSpeed));
             }
     
-            // Zoom in/out (move up/down)
+            // Zoom control
             float wheel = GetMouseWheelMove();
-            if (wheel >= 0.0f) {
+            if (wheel != 0.0f) {
                 Vector3 zoomDir = Vector3Normalize(Vector3Subtract(target, position));
-                Vector3 zoomMove = Vector3Scale(zoomDir, wheel * scrollSpeed);
-                position = Vector3Add(position, zoomMove);
-            }
+                Vector3 zoomStep = Vector3Scale(zoomDir, wheel * scrollSpeed);
+
+                Vector3 newPos = Vector3Add(position, zoomStep);
+                float newHeight = newPos.y;
+
+                // Clamp between sea level and max zoom out
+                if (newHeight >= 0.5f && newHeight <= 35.0f) {
+                    position = newPos;
+
+                    // Adjust pitch when zooming
+                    Vector3 flatForward = Vector3Normalize({ zoomDir.x, 0.0f, zoomDir.z });
+                    // float pitchFactor = 0.2f;  // how much the camera pitches forward/back
+                    // target = Vector3Add(position, Vector3Lerp(flatForward, zoomDir, pitchFactor));
+                }
+            } 
 
              // Middle mouse drag movement
             if (IsMouseButtonDown(MOUSE_MIDDLE_BUTTON)) {

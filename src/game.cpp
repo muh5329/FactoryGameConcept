@@ -26,7 +26,7 @@ public:
     Game() {
         InitWindow(800, 600, "3D Isometric RTS");
         SetTargetFPS(60);
-
+        SetTraceLogLevel(0);
         // Capsule Setup
         player = {
             .position = {0, 2, 0},
