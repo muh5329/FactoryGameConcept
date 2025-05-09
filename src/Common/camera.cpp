@@ -78,7 +78,11 @@ class RtsCamera : public Camera3D {
                 // Clamp between sea level and max zoom out
                 if (newHeight >= 0.5f && newHeight <= 35.0f) {
                     position = newPos;
-         
+
+                    // Adjust pitch when zooming
+                    Vector3 flatForward = Vector3Normalize({ zoomDir.x, 0.0f, zoomDir.z });
+                    float pitchFactor = wheel; // how much the camera pitches forward/back
+                    target = Vector3Add(position, Vector3Lerp(flatForward, zoomDir, pitchFactor));
                 }
             } 
 
