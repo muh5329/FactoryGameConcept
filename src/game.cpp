@@ -153,12 +153,12 @@ private:
         DrawRectangleLinesEx(rect, 1, GREEN);
     }
 
-    void DrawPlayer() {
-         // Draw capsule
-         DrawCylinder({player.position.x, player.position.y, player.position.z}, player.radius, player.radius, player.height - player.radius * 2, 16, BLUE);
-         DrawSphere({player.position.x, player.position.y + (player.height / 2.0f - player.radius), player.position.z}, player.radius, BLUE);
-         DrawSphere({player.position.x, player.position.y - (player.height / 2.0f - player.radius), player.position.z}, player.radius, BLUE);
-    }
+    // void DrawPlayer() {
+    //      // Draw capsule
+    //      DrawCylinder({player.position.x, player.position.y, player.position.z}, player.radius, player.radius, player.height - player.radius * 2, 16, BLUE);
+    //      DrawSphere({player.position.x, player.position.y + (player.height / 2.0f - player.radius), player.position.z}, player.radius, BLUE);
+    //      DrawSphere({player.position.x, player.position.y - (player.height / 2.0f - player.radius), player.position.z}, player.radius, BLUE);
+    // }
 };
 
 int main() {
