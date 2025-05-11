@@ -11,6 +11,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/camera.cpp" "CMakeFiles/FactoryGameConcept.dir/src/Common/camera.cpp.o" "gcc" "CMakeFiles/FactoryGameConcept.dir/src/Common/camera.cpp.o.d"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Controllers/capsule.cpp" "CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o" "gcc" "CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o.d"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/NPC/unit.cpp" "CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o" "gcc" "CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o.d"
+  "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/Player/player.cpp" "CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o" "gcc" "CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o.d"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Scenes/World/world.cpp" "CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o" "gcc" "CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o.d"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/game.cpp" "CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o" "gcc" "CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o.d"
   )

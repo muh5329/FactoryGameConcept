@@ -18,8 +18,6 @@ private:
     Vector2 dragStart{}, dragEnd{};
     bool isDragging = false;
     RtsCamera camera;
-    CapsuleObj player;
-    Capsule playerCapsule;
     World world;
     int scrollSpeed = 4; 
 public:
@@ -27,20 +25,13 @@ public:
         InitWindow(800, 600, "3D Isometric RTS");
         SetTargetFPS(60);
         SetTraceLogLevel(0);
-        // Capsule Setup
-        player = {
-            .position = {0, 2, 0},
-            .radius = 0.5f,
-            .height = 2.0f,
-            .velocity = {0},
-            .grounded = false
-        };
+        
        
 
         // Init Bullet
         world.InitializePhysics();
         world.CreateGround();
-        playerCapsule.CreateCapsule(&player, &world);
+       
 
        
         for (int i = 0; i < Constants::MAX_UNITS; i++) {
@@ -68,7 +59,7 @@ private:
             unit.Update(deltaTime);
         }
         camera.Update();
-        playerCapsule.UpdateCapsule(&player, deltaTime);
+        
     }
 
     void HandleInput() {
@@ -131,7 +122,6 @@ private:
         BeginMode3D(camera);
         DrawGrid(20, 1.0f);
         for (const auto& unit : units) unit.Draw();
-        DrawPlayer();
         EndMode3D();
         DrawText("3D Isometric RTS", 10, 10, 20, BLACK);
 
@@ -153,12 +143,7 @@ private:
         DrawRectangleLinesEx(rect, 1, GREEN);
     }
 
-    // void DrawPlayer() {
-    //      // Draw capsule
-    //      DrawCylinder({player.position.x, player.position.y, player.position.z}, player.radius, player.radius, player.height - player.radius * 2, 16, BLUE);
-    //      DrawSphere({player.position.x, player.position.y + (player.height / 2.0f - player.radius), player.position.z}, player.radius, BLUE);
-    //      DrawSphere({player.position.x, player.position.y - (player.height / 2.0f - player.radius), player.position.z}, player.radius, BLUE);
-    // }
+ 
 };
 
 int main() {

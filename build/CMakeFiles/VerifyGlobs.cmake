@@ -8,6 +8,7 @@ set(OLD_GLOB
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/camera.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Controllers/capsule.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/NPC/unit.cpp"
+  "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/Player/player.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Scenes/World/world.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/game.cpp"
   )
