@@ -10,53 +10,79 @@ Capsule::Capsule()
       body(nullptr) {}
 
 void Capsule::Update(float deltaTime) {
-    // Implement the logic to update the capsule here
+    // Get position from physics body
+    if (body) {
+        btTransform trans;
+        body->getMotionState()->getWorldTransform(trans);
+        btVector3 pos = trans.getOrigin();
+        position = { pos.getX(), pos.getY(), pos.getZ() };
+    }
 }
 
 void Capsule::Draw() const {
-    // Implement capsule rendering code here, using raylib's Draw functions
+    DrawCapsule(position, height, radius, RED); // Replace with custom rendering if needed
 }
 
 void Capsule::UpdateCapsule(CapsuleObj* capsule, float delta) {
-    // Implement your capsule update logic here
-    Vector3 direction = {0};
+    if (!capsule->body) return;
 
-    if (IsKeyDown(KEY_W)) direction.z -= 1.0f;
-    if (IsKeyDown(KEY_S)) direction.z += 1.0f;
-    if (IsKeyDown(KEY_A)) direction.x -= 1.0f;
-    if (IsKeyDown(KEY_D)) direction.x += 1.0f;
+    btVector3 velocity = capsule->body->getLinearVelocity();
+    btVector3 movement(0, velocity.getY(), 0); // Keep vertical component as-is
 
-    float len = sqrtf(direction.x * direction.x + direction.z * direction.z);
-    if (len > 0.0f) {
-        direction.x /= len;
-        direction.z /= len;
-        capsule->position.x += direction.x * Constants::MOVE_SPEED * delta;
-        capsule->position.z += direction.z * Constants::MOVE_SPEED * delta;
+    Vector3 input = { 0 };
+    if (IsKeyDown(KEY_W)) input.z -= 1.0f;
+    if (IsKeyDown(KEY_S)) input.z += 1.0f;
+    if (IsKeyDown(KEY_A)) input.x -= 1.0f;
+    if (IsKeyDown(KEY_D)) input.x += 1.0f;
+
+    float length = sqrtf(input.x * input.x + input.z * input.z);
+    if (length > 0.0f) {
+        input.x /= length;
+        input.z /= length;
+
+        movement.setX(input.x * Constants::MOVE_SPEED);
+        movement.setZ(input.z * Constants::MOVE_SPEED);
     }
 
+    // Apply movement
+    capsule->body->setLinearVelocity(movement);
+
+    // Jump
     if (IsKeyPressed(KEY_SPACE) && capsule->grounded) {
-        capsule->velocity.y = Constants::JUMP_FORCE;
+        capsule->body->applyCentralImpulse(btVector3(0, Constants::JUMP_FORCE, 0));
         capsule->grounded = false;
     }
 
-    capsule->velocity.y += Constants::GRAVITY * delta;
-    capsule->position.y += capsule->velocity.y * delta;
+    // Check for ground contact
+    btTransform trans;
+    capsule->body->getMotionState()->getWorldTransform(trans);
+    float y = trans.getOrigin().getY();
 
-    if (capsule->position.y <= Constants::GROUND_Y + capsule->height / 2.0f) {
-        capsule->position.y = Constants::GROUND_Y + capsule->height / 2.0f;
-        capsule->velocity.y = 0.0f;
+    if (y <= Constants::GROUND_Y + capsule->height / 2.0f + 0.01f) {
         capsule->grounded = true;
+    } else {
+        capsule->grounded = false;
     }
 }
 
 void Capsule::CreateCapsule(CapsuleObj* capsule, World* world) {
-    btCollisionShape* capsuleShape = new btCapsuleShape(capsule->radius, capsule->height - capsule->radius * 2);
-    btDefaultMotionState* motionState = new btDefaultMotionState(btTransform(btQuaternion(0, 0, 0, 1), btVector3(capsule->position.x, capsule->position.y, capsule->position.z)));
+    btCollisionShape* capsuleShape = new btCapsuleShape(capsule->radius, capsule->height - 2 * capsule->radius);
+
+    btTransform startTransform;
+    startTransform.setIdentity();
+    startTransform.setOrigin(btVector3(capsule->position.x, capsule->position.y, capsule->position.z));
+
     btScalar mass = 1.0f;
-    btVector3 inertia(0, 0, 0);
-    capsuleShape->calculateLocalInertia(mass, inertia);
-    btRigidBody::btRigidBodyConstructionInfo capsuleCI(mass, motionState, capsuleShape, inertia);
-    capsule->body = new btRigidBody(capsuleCI);
+    btVector3 localInertia(0, 0, 0);
+    capsuleShape->calculateLocalInertia(mass, localInertia);
+
+    btDefaultMotionState* motionState = new btDefaultMotionState(startTransform);
+    btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, motionState, capsuleShape, localInertia);
+    capsule->body = new btRigidBody(rbInfo);
     capsule->body->setActivationState(DISABLE_DEACTIVATION);
+    capsule->body->setFriction(0.9f);
+    capsule->body->setSleepingThresholds(0, 0);
+    capsule->body->setAngularFactor(btVector3(0, 0, 0)); // Prevent rotation
+
     world->dynamicsWorld->addRigidBody(capsule->body);
 }

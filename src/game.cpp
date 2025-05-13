@@ -26,16 +26,14 @@ public:
         SetTargetFPS(60);
         SetTraceLogLevel(0);
         
-       
 
         // Init Bullet
         world.InitializePhysics();
         world.CreateGround();
-       
 
        
         for (int i = 0; i < Constants::MAX_UNITS; i++) {
-            units.emplace_back();
+            units.emplace_back(world);
         }
     }
 
@@ -111,8 +109,6 @@ private:
             ray.position.z + t * ray.direction.z
         };
     }
-
-   
 
 
     void Draw() {
