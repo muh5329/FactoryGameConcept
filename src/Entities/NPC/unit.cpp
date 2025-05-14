@@ -42,12 +42,20 @@ class Unit {
                     direction.z /= distance;
                     position.x += direction.x * Constants::UNIT_SPEED * deltaTime;
                     position.z += direction.z * Constants::UNIT_SPEED * deltaTime;
-                    
+                    // Get position from physics body
+                    if (body) {
+                        btTransform trans;
+                        body->getMotionState()->getWorldTransform(trans);
+                        btVector3 pos = trans.getOrigin();
+                        position = { pos.getX(), pos.getY(), pos.getZ() };
+                    }
                 } else {
                     moving = false;
                 }
             }
         }
+
+        void 
     
         void Draw() const {
             Color color = selected ? RED : BLUE;
