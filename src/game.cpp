@@ -33,7 +33,7 @@ public:
 
        
         for (int i = 0; i < Constants::MAX_UNITS; i++) {
-            units.emplace_back(world);
+            units.emplace_back(&world);
         }
     }
 

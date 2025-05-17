@@ -1,6 +1,7 @@
 #include <Controllers/capsule.h>
 #include <Common/constants.hpp>
-
+#include <raylib.h>
+#include <raymath.h>
 Capsule::Capsule()
     : position(Vector3{0, 0, 0}),
       radius(1.0f),
@@ -20,7 +21,8 @@ void Capsule::Update(float deltaTime) {
 }
 
 void Capsule::Draw() const {
-    DrawCapsule(position, height, radius, RED); // Replace with custom rendering if needed
+    Vector3 top = Vector3Add(position, (Vector3){ 0.0f, height, 0.0f });
+    DrawCapsule(position, top, radius, 2, 2, RED); // Replace with custom rendering if needed
 }
 
 void Capsule::UpdateCapsule(CapsuleObj* capsule, float delta) {
