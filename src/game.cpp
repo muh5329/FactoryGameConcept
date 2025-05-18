@@ -53,6 +53,7 @@ public:
 
 private:
     void Update(float deltaTime) {
+        world.dynamicsWorld->stepSimulation(deltaTime, 10);
         for (auto& unit : units) {
             unit.Update(deltaTime);
         }
@@ -126,6 +127,8 @@ private:
         }
 
         EndDrawing();
+
+        world.dynamicsWorld->debugDrawWorld();
     }
 
     void DrawRectangleDrag(){

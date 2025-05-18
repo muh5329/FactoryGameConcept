@@ -16,5 +16,10 @@ namespace Constants {
     constexpr float GRAVITY = -9.8f;
     constexpr float MOVE_SPEED = 5.0f;
     constexpr float JUMP_FORCE = 5.0f;
+
+    // Collision Constraints
+    constexpr int COL_UNIT  = 0x1;
+    constexpr int COL_GROUND = 0x2;
+    constexpr int COL_ALL = (COL_UNIT | COL_GROUND);
 }
 

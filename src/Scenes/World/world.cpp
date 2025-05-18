@@ -19,6 +19,8 @@ void World::InitializePhysics() {
     solver = new btSequentialImpulseConstraintSolver();
     dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
     dynamicsWorld->setGravity(btVector3(0, Constants::GRAVITY, 0));
+   
+    
 }
 
 void World::ShutdownPhysics() {
