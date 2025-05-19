@@ -27,6 +27,7 @@ make run
 
 [] Fix camera movement
 [] Swap between FPS and RTS Camera
+[] recast for pathfinding [recast](https://github.com/recastnavigation/recastnavigation/blob/main/Docs/_99_Roadmap.md)
 
 
 ## Prerequisites
