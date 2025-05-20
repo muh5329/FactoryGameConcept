@@ -22,6 +22,9 @@ make run
 ## Musings
 [Thoughts](Thoughts.md)
 
+## Blog 
+[Precursor](blog/001.md)
+[Pathfinding](blog/002.md)
 
 ## TODO
 
