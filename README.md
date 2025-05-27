@@ -24,7 +24,8 @@ make run
 
 ## Blog 
 [Precursor](blog/001.md)
-[Pathfinding](blog/002.md)
+[ReCast](blog/002.md)
+[A* Pathfinding](blog/003.md)
 
 ## TODO
 
