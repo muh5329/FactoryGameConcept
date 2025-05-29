@@ -1,4 +1,3 @@
-// ©2023 JDSherbert. All rights reserved.
 #include "Pathfinder.h"
 
 #include <algorithm>
