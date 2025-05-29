@@ -27,6 +27,9 @@ make run
 [ReCast](blog/002.md)
 [A* Pathfinding](blog/003.md)
 
+## Docs 
+[a* ALo](src/Common/pathfinding/a_*.MD)
+
 ## TODO
 
 [] Fix camera movement
