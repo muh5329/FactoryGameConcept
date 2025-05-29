@@ -3,6 +3,7 @@
 
 #include <algorithm>
 #include <iostream>
+#include <queue>
 
 Node::Node(int _x, int _y) 
 : x(_x)

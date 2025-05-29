@@ -83,10 +83,24 @@ CMakeFiles/FactoryGameConcept.dir/src/Common/camera.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FactoryGameConcept.dir/src/Common/camera.cpp.s"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/camera.cpp -o CMakeFiles/FactoryGameConcept.dir/src/Common/camera.cpp.s
 
+CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
+CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o: /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/pathfinding/Pathfinder.cpp
+CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/pathfinding/Pathfinder.cpp
+
+CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.i"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/pathfinding/Pathfinder.cpp > CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.i
+
+CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.s"
+	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/pathfinding/Pathfinder.cpp -o CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.s
+
 CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
 CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o: /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Controllers/capsule.cpp
 CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Controllers/capsule.cpp
 
 CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.i: cmake_force
@@ -100,7 +114,7 @@ CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.s: cmake_force
 CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
 CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o: /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/NPC/unit.cpp
 CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/NPC/unit.cpp
 
 CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.i: cmake_force
@@ -114,7 +128,7 @@ CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.s: cmake_force
 CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
 CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o: /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/Player/player.cpp
 CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/Player/player.cpp
 
 CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.i: cmake_force
@@ -128,7 +142,7 @@ CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.s: cmake_force
 CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
 CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o: /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Scenes/World/world.cpp
 CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Scenes/World/world.cpp
 
 CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.i: cmake_force
@@ -142,7 +156,7 @@ CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp.s: cmake_force
 CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o: CMakeFiles/FactoryGameConcept.dir/flags.make
 CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o: /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/game.cpp
 CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o: CMakeFiles/FactoryGameConcept.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o"
 	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o -MF CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o.d -o CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o -c /Users/muneebhaq/Documents/projects/FactoryGameConcept/src/game.cpp
 
 CMakeFiles/FactoryGameConcept.dir/src/game.cpp.i: cmake_force
@@ -156,6 +170,7 @@ CMakeFiles/FactoryGameConcept.dir/src/game.cpp.s: cmake_force
 # Object files for target FactoryGameConcept
 FactoryGameConcept_OBJECTS = \
 "CMakeFiles/FactoryGameConcept.dir/src/Common/camera.cpp.o" \
+"CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o" \
 "CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o" \
 "CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o" \
 "CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o" \
@@ -166,6 +181,7 @@ FactoryGameConcept_OBJECTS = \
 FactoryGameConcept_EXTERNAL_OBJECTS =
 
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/src/Common/camera.cpp.o
+FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/src/Common/pathfinding/Pathfinder.cpp.o
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/src/Controllers/capsule.cpp.o
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/src/Entities/NPC/unit.cpp.o
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/src/Entities/Player/player.cpp.o
@@ -173,7 +189,7 @@ FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/src/Scenes/World/world.cpp
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/src/game.cpp.o
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/build.make
 FactoryGameConcept: CMakeFiles/FactoryGameConcept.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX executable FactoryGameConcept"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/Users/muneebhaq/Documents/projects/FactoryGameConcept/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable FactoryGameConcept"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/FactoryGameConcept.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

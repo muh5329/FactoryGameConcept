@@ -6,7 +6,7 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/Users/muneebhaq/Documents/projects/FactoryGameConcept/include -I/Users/muneebhaq/Documents/projects/FactoryGameConcept/src -I/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/include/bullet
 
-CXX_FLAGSarm64 = -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk -mmacosx-version-min=15.3
+CXX_FLAGSarm64 = -std=gnu++17 -arch arm64 -mmacosx-version-min=15.3
 
-CXX_FLAGS = -std=gnu++17 -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.4.sdk -mmacosx-version-min=15.3
+CXX_FLAGS = -std=gnu++17 -arch arm64 -mmacosx-version-min=15.3
 
