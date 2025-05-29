@@ -28,7 +28,7 @@ make run
 [A* Pathfinding](blog/003.md)
 
 ## Docs 
-[a* ALo](src/Common/pathfinding/a_*.MD)
+[a* Algorithm](src/Common/pathfinding/a_*.MD)
 
 ## TODO
 
