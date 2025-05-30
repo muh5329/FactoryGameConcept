@@ -1,103 +1,79 @@
 #include "Pathfinder.h"
 
-#include <algorithm>
 #include <iostream>
+#include <vector>
 #include <queue>
+#include <algorithm>
+#include <cmath>
+
+using std::vector;
+using std::priority_queue;
+using std::greater;
 
 Node::Node(int _x, int _y) 
-: x(_x)
-, y(_y)
-, f(0)
-, g(0)
-, h(0) 
-{
-}
+    : x(_x), y(_y), f(0), g(0), h(0) {}
 
-bool Node::operator>(const Node& other) const 
-{
+bool Node::operator>(const Node& other) const {
     return f > other.f;
 }
 
-bool Node::operator==(const Node& other) const 
-{
+bool Node::operator==(const Node& other) const {
     return x == other.x && y == other.y;
 }
 
-std::vector<Node> FindPath(const std::vector<std::vector<int>>& graph, const Node& start, const Node& goal) 
-{
-    // Define possible movements (4 directions: up, down, left, right)
+vector<Node> FindPath(const vector<vector<int>>& graph, const Node& start, const Node& goal) {
     const int directionX[] = {-1, 0, 1, 0};
     const int directionY[] = {0, 1, 0, -1};
 
-    // Initialize the open and closed lists
     priority_queue<Node, vector<Node>, greater<Node>> openList;
-    vector<vector<bool>> closedList(graph.size(), vector<bool>(grid[0].size(), false));
+    vector<vector<bool>> closedList(graph.size(), vector<bool>(graph[0].size(), false));
+    vector<vector<Node>> cameFrom(graph.size(), vector<Node>(graph[0].size(), Node(-1, -1)));
 
-    // Start node
-    openList.push(start);
+    Node startCopy = start;
+    openList.push(startCopy);
 
-    // Main loop
-    while (!openList.empty()) 
-    {
-        // Get the cell with the lowest f value from the open list
+    while (!openList.empty()) {
         Node current = openList.top();
         openList.pop();
 
-        // Check if the current cell is the goal
-        if (current == goal) 
-        {
-            // Reconstruct the path
+        if (current == goal) {
             vector<Node> path;
-            while (!(current == start)) 
-            {
+            while (!(current == start)) {
                 path.push_back(current);
-                current = graph[current.x][current.y];
+                current = cameFrom[current.x][current.y];
             }
             path.push_back(start);
             reverse(path.begin(), path.end());
             return path;
         }
 
-        // Mark the current cell as closed
         closedList[current.x][current.y] = true;
 
-        // Explore neighbors
-        for (int i = 0; i < 4; ++i) 
-        {
+        for (int i = 0; i < 4; ++i) {
             int newX = current.x + directionX[i];
             int newY = current.y + directionY[i];
 
-            // Check if the neighbor is within the grid boundaries
-            if (newX >= 0 && newX < graph.size() && newY >= 0 && newY < grid[0].size()) 
-            {
-                // Check if the neighbor is walkable and not in the closed list
-                if (graph[newX][newY] == 0 && !closedList[newX][newY]) 
-                {
+            if (newX >= 0 && newX < graph.size() && newY >= 0 && newY < graph[0].size()) {
+                if (graph[newX][newY] == 0 && !closedList[newX][newY]) {
                     Node neighbor(newX, newY);
                     int newG = current.g + 1;
 
-                    // Check if the neighbor is not in the open list or has a lower g value
-                    if (newG < neighbor.g || !closedList[newX][newY]) 
-                    {
-                        neighbor.g = newG;
-                        neighbor.h = abs(newX - goal.x) + abs(newY - goal.y);
-                        neighbor.f = neighbor.g + neighbor.h;
-                        graph[newX][newY] = current; // Update the parent of the neighbor
-                        openList.push(neighbor); // Add the neighbor to the open list
-                    }
+                    neighbor.g = newG;
+                    neighbor.h = abs(newX - goal.x) + abs(newY - goal.y);
+                    neighbor.f = neighbor.g + neighbor.h;
+
+                    cameFrom[newX][newY] = current;
+                    openList.push(neighbor);
                 }
             }
         }
     }
 
-    // No path found
-    return vector<Node>();
+    return vector<Node>(); // No path found
 }
 
-void PrintPath(const std::vector<Node>& path) 
-{
-    for (const Node& node : path) 
-    {
+void PrintPath(const vector<Node>& path) {
+    for (const Node& node : path) {
         std::cout << "(" << node.x << ", " << node.y << ") ";
     }
     std::cout << std::endl;
