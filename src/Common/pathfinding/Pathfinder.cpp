@@ -49,6 +49,7 @@ vector<Node> FindPath(const vector<vector<int>>& graph, const Node& start, const
 
         closedList[current.x][current.y] = true;
 
+        // Neighbors processing and updating 
         for (int i = 0; i < 4; ++i) {
             int newX = current.x + directionX[i];
             int newY = current.y + directionY[i];
