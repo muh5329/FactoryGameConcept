@@ -6,6 +6,7 @@ cmake_policy(SET CMP0009 NEW)
 file(GLOB_RECURSE NEW_GLOB LIST_DIRECTORIES false "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/*.cpp")
 set(OLD_GLOB
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/camera.cpp"
+  "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/grid.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Common/pathfinding/Pathfinder.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Controllers/capsule.cpp"
   "/Users/muneebhaq/Documents/projects/FactoryGameConcept/src/Entities/NPC/unit.cpp"

@@ -154,6 +154,30 @@ src/Common/camera.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/src/Common/camera.cpp.s
 .PHONY : src/Common/camera.cpp.s
 
+src/Common/grid.o: src/Common/grid.cpp.o
+.PHONY : src/Common/grid.o
+
+# target to build an object file
+src/Common/grid.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/src/Common/grid.cpp.o
+.PHONY : src/Common/grid.cpp.o
+
+src/Common/grid.i: src/Common/grid.cpp.i
+.PHONY : src/Common/grid.i
+
+# target to preprocess a source file
+src/Common/grid.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/src/Common/grid.cpp.i
+.PHONY : src/Common/grid.cpp.i
+
+src/Common/grid.s: src/Common/grid.cpp.s
+.PHONY : src/Common/grid.s
+
+# target to generate assembly for a file
+src/Common/grid.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/FactoryGameConcept.dir/build.make CMakeFiles/FactoryGameConcept.dir/src/Common/grid.cpp.s
+.PHONY : src/Common/grid.cpp.s
+
 src/Common/pathfinding/Pathfinder.o: src/Common/pathfinding/Pathfinder.cpp.o
 .PHONY : src/Common/pathfinding/Pathfinder.o
 
@@ -310,6 +334,9 @@ help:
 	@echo "... src/Common/camera.o"
 	@echo "... src/Common/camera.i"
 	@echo "... src/Common/camera.s"
+	@echo "... src/Common/grid.o"
+	@echo "... src/Common/grid.i"
+	@echo "... src/Common/grid.s"
 	@echo "... src/Common/pathfinding/Pathfinder.o"
 	@echo "... src/Common/pathfinding/Pathfinder.i"
 	@echo "... src/Common/pathfinding/Pathfinder.s"

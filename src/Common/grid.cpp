@@ -2,7 +2,7 @@
 #include <vector>
 #include <algorithm> 
 using std::vector;
-using std::clamp;
+
 
 struct GridCell {
     bool walkable;
@@ -40,5 +40,7 @@ public:
         x = std::clamp(x, 0, width - 1);
         z = std::clamp(z, 0, height - 1);
         return cells[z][x];
-    }
+    } 
+
+    
 };

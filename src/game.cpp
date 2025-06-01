@@ -8,6 +8,7 @@
 #include <Scenes/World/world.h>
 #include <Common/constants.hpp>
 #include <Common/camera.cpp>
+#include <Common/grid.cpp>
 
 #include <Entities/NPC/unit.cpp>
 
@@ -20,6 +21,7 @@ private:
     RtsCamera camera;
     World world;
     int scrollSpeed = 4; 
+    Grid* navGrid;
 public:
     Game() {
         InitWindow(800, 600, "3D Isometric RTS");
@@ -31,6 +33,9 @@ public:
         world.InitializePhysics();
         world.CreateGround();
 
+        // Init Nav Grid
+        navGrid = new Grid(50, 50, 1.0f);  // 50x50 grid with 1 unit per cell
+
        
         for (int i = 0; i < Constants::MAX_UNITS; i++) {
             units.emplace_back(&world);
@@ -39,6 +44,7 @@ public:
 
     ~Game() {
         world.ShutdownPhysics();
+        delete navGrid;
         CloseWindow();
     }
 
@@ -111,13 +117,50 @@ private:
         };
     }
 
+    Vector3 GridToWorld(int x, int z) {
+        return {
+            x * navGrid->cellSize + navGrid->cellSize / 2,
+            0,
+            z * navGrid->cellSize + navGrid->cellSize / 2
+        };
+    }
+
+    Vector2i WorldToGrid(Vector3 pos) {
+        return {
+            (int)(pos.x / navGrid->cellSize),
+            (int)(pos.z / navGrid->cellSize)
+        };
+    }
+
+    void UpdateGridObstacles() {
+        for (auto& row : navGrid->cells) {
+            for (auto& cell : row) {
+                // Raycast down to detect obstacle/ground
+                Ray ray = { cell.worldPosition + Vector3{0, 10, 0}, Vector3{0, -1, 0} };
+                RaycastHit hit;
+                cell.walkable = !RayHitsObstacle(ray, &hit); // Your custom function
+            }
+        }
+    }
+
+    void DrawDebugGrid(){
+        for (int z = 0; z < navGrid->height; z++) {
+            for (int x = 0; x < navGrid->width; x++) {
+                Vector3 pos = navGrid->cells[z][x].worldPosition;
+                Color color = navGrid->cells[z][x].walkable ? LIGHTGRAY : RED;
+                DrawCube(pos, 0.9f, 0.1f, 0.9f, color);
+            }
+        }
+    }
+
 
     void Draw() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-
+        
         BeginMode3D(camera);
         DrawGrid(20, 1.0f);
+        DrawDebugGrid()
         for (const auto& unit : units) unit.Draw();
         EndMode3D();
         DrawText("3D Isometric RTS", 10, 10, 20, BLACK);
