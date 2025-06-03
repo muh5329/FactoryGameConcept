@@ -9,9 +9,12 @@
 #include <Common/constants.hpp>
 #include <Common/camera.cpp>
 #include <Common/grid.cpp>
-
 #include <Entities/NPC/unit.cpp>
 
+struct RaycastHit {
+    Vector3 position;
+    bool hit;
+};
 
 class Game {
 private:
@@ -20,14 +23,14 @@ private:
     bool isDragging = false;
     RtsCamera camera;
     World world;
-    int scrollSpeed = 4; 
+    int scrollSpeed = 4;
     Grid* navGrid;
+
 public:
     Game() {
         InitWindow(800, 600, "3D Isometric RTS");
         SetTargetFPS(60);
         SetTraceLogLevel(0);
-        
 
         // Init Bullet
         world.InitializePhysics();
@@ -36,7 +39,6 @@ public:
         // Init Nav Grid
         navGrid = new Grid(50, 50, 1.0f);  // 50x50 grid with 1 unit per cell
 
-       
         for (int i = 0; i < Constants::MAX_UNITS; i++) {
             units.emplace_back(&world);
         }
@@ -64,7 +66,6 @@ private:
             unit.Update(deltaTime);
         }
         camera.Update();
-        
     }
 
     void HandleInput() {
@@ -125,25 +126,42 @@ private:
         };
     }
 
-    Vector2i WorldToGrid(Vector3 pos) {
+    Vector2 WorldToGrid(Vector3 pos) {
         return {
-            (int)(pos.x / navGrid->cellSize),
-            (int)(pos.z / navGrid->cellSize)
+            static_cast<float>(static_cast<int>(pos.x / navGrid->cellSize)),
+            static_cast<float>(static_cast<int>(pos.z / navGrid->cellSize))
         };
     }
 
     void UpdateGridObstacles() {
         for (auto& row : navGrid->cells) {
             for (auto& cell : row) {
-                // Raycast down to detect obstacle/ground
-                Ray ray = { cell.worldPosition + Vector3{0, 10, 0}, Vector3{0, -1, 0} };
-                RaycastHit hit;
-                cell.walkable = !RayHitsObstacle(ray, &hit); // Your custom function
+                Vector3 origin = { cell.worldPosition.x, cell.worldPosition.y + 10.0f, cell.worldPosition.z };
+                Vector3 target = { cell.worldPosition.x, cell.worldPosition.y - 10.0f, cell.worldPosition.z };
+
+                btVector3 rayFromWorld(origin.x, origin.y, origin.z);
+                btVector3 rayToWorld(target.x, target.y, target.z);
+
+                btCollisionWorld::ClosestRayResultCallback rayCallback(rayFromWorld, rayToWorld);
+                world.dynamicsWorld->rayTest(rayFromWorld, rayToWorld, rayCallback);
+
+                bool hit = rayCallback.hasHit();
+                cell.walkable = !hit;
+
+                // Optional: Save intersection point if needed
+                // if (hit) {
+                //     Vector3 hitPos = {
+                //         rayCallback.m_hitPointWorld.getX(),
+                //         rayCallback.m_hitPointWorld.getY(),
+                //         rayCallback.m_hitPointWorld.getZ()
+                //     };
+                //     cell.hitPosition = hitPos; // Make sure cell has a hitPosition if using this
+                // }
             }
         }
     }
 
-    void DrawDebugGrid(){
+    void DrawDebugGrid() {
         for (int z = 0; z < navGrid->height; z++) {
             for (int x = 0; x < navGrid->width; x++) {
                 Vector3 pos = navGrid->cells[z][x].worldPosition;
@@ -153,16 +171,16 @@ private:
         }
     }
 
-
     void Draw() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
-        
+
         BeginMode3D(camera);
         DrawGrid(20, 1.0f);
-        DrawDebugGrid()
+        DrawDebugGrid();
         for (const auto& unit : units) unit.Draw();
         EndMode3D();
+
         DrawText("3D Isometric RTS", 10, 10, 20, BLACK);
 
         if (isDragging) {
@@ -174,7 +192,7 @@ private:
         world.dynamicsWorld->debugDrawWorld();
     }
 
-    void DrawRectangleDrag(){
+    void DrawRectangleDrag() {
         Vector2 mousePos = GetMousePosition();
         Rectangle rect = {
             std::min(dragStart.x, mousePos.x),
@@ -184,8 +202,6 @@ private:
         };
         DrawRectangleLinesEx(rect, 1, GREEN);
     }
-
- 
 };
 
 int main() {
