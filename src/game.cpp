@@ -9,6 +9,7 @@
 #include <Common/constants.hpp>
 #include <Common/camera.cpp>
 #include <Common/grid.cpp>
+#include <Common/pathfinding/Pathfinder.h>
 #include <Entities/NPC/unit.cpp>
 
 struct RaycastHit {
@@ -133,32 +134,14 @@ private:
         };
     }
 
-    void UpdateGridObstacles() {
-        for (auto& row : navGrid->cells) {
-            for (auto& cell : row) {
-                Vector3 origin = { cell.worldPosition.x, cell.worldPosition.y + 10.0f, cell.worldPosition.z };
-                Vector3 target = { cell.worldPosition.x, cell.worldPosition.y - 10.0f, cell.worldPosition.z };
-
-                btVector3 rayFromWorld(origin.x, origin.y, origin.z);
-                btVector3 rayToWorld(target.x, target.y, target.z);
-
-                btCollisionWorld::ClosestRayResultCallback rayCallback(rayFromWorld, rayToWorld);
-                world.dynamicsWorld->rayTest(rayFromWorld, rayToWorld, rayCallback);
-
-                bool hit = rayCallback.hasHit();
-                cell.walkable = !hit;
-
-                // Optional: Save intersection point if needed
-                // if (hit) {
-                //     Vector3 hitPos = {
-                //         rayCallback.m_hitPointWorld.getX(),
-                //         rayCallback.m_hitPointWorld.getY(),
-                //         rayCallback.m_hitPointWorld.getZ()
-                //     };
-                //     cell.hitPosition = hitPos; // Make sure cell has a hitPosition if using this
-                // }
+    std::vector<std::vector<int>> ConvertGridToIntMap(const Grid& grid) {
+        std::vector<std::vector<int>> intMap(grid.width, std::vector<int>(grid.height, 1));
+        for (int z = 0; z < grid.height; ++z) {
+            for (int x = 0; x < grid.width; ++x) {
+                intMap[x][z] = grid.cells[z][x].walkable ? 0 : 1;
             }
         }
+        return intMap;
     }
 
     void DrawDebugGrid() {
@@ -178,7 +161,23 @@ private:
         BeginMode3D(camera);
         DrawGrid(20, 1.0f);
         DrawDebugGrid();
-        for (const auto& unit : units) unit.Draw();
+        for (const auto& unit : units){
+            Vector2 startGrid = WorldToGrid(unit.position);
+            Vector2 goalGrid = WorldToGrid(unit.target);
+
+            Node startNode(static_cast<int>(startGrid.x), static_cast<int>(startGrid.y));
+            Node goalNode(static_cast<int>(goalGrid.x), static_cast<int>(goalGrid.y));
+
+            auto intGrid = ConvertGridToIntMap(*navGrid);
+            std::vector<Node> path = FindPath(intGrid, startNode, goalNode);
+
+            // Visualize path 
+            for (const Node& node : path) {
+                Vector3 pos = GridToWorld(node.x, node.y);
+                DrawCubeWires(pos, 1.0f, 0.1f, 1.0f, BLUE);
+            }
+           unit.Draw(); 
+        } 
         EndMode3D();
 
         DrawText("3D Isometric RTS", 10, 10, 20, BLACK);
@@ -186,6 +185,9 @@ private:
         if (isDragging) {
             DrawRectangleDrag();
         }
+
+        
+
 
         EndDrawing();
 
