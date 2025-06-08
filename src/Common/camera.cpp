@@ -80,7 +80,7 @@ class RtsCamera : public Camera3D {
                     position = newPos;
 
                     // Adjust pitch when zooming
-                    Vector3 flatForward = Vector3Normalize({ zoomDir.x, 0.0f, zoomDir.z });
+                    Vector3 flatForward = Vector3Normalize({ zoomDir.x, zoomDir.y, zoomDir.z });
                     float pitchFactor = wheel; // how much the camera pitches forward/back
                     target = Vector3Add(position, Vector3Lerp(flatForward, zoomDir, pitchFactor));
                 }
