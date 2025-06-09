@@ -4,7 +4,7 @@
 #include <Common/constants.hpp>
 #include <btBulletDynamicsCommon.h>
 #include <Scenes/World/world.h>
-
+#include <Common/grid.h> 
 // External constants and physics world assumed to be defined elsewhere
 extern float MOVE_SPEED;
 extern float JUMP_FORCE;
@@ -34,8 +34,10 @@ public:
         CreateUnit(world);
     }
 
-    void Update(float deltaTime) {
+    void Update(float deltaTime, Grid* navGrid) {
         if (moving && body) {
+            navGrid->cells[position.z][position.x].walkable = true;
+            
             btVector3 velocity = body->getLinearVelocity();
             btVector3 movement(0, velocity.getY(), 0); // Keep vertical component as-is 
 
@@ -84,17 +86,18 @@ public:
             // Sync Bullet position back to Raylib's Vector3
              btVector3 btPos = trans.getOrigin();
              position = { btPos.getX(), btPos.getY(), btPos.getZ() };
-            
 
+            
         
         } else {
             moving = false;
+            navGrid->cells[position.z][position.x].walkable = false;
         }
     }
 
     void Draw() const {
         Color color = selected ? RED : BLUE;
-        DrawCube(position, radius * 2.0f, height, radius * 2.0f, color);
+        DrawCube(position, radius , height, radius , color);
     }
 
     void CreateUnit(World* world) {

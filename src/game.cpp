@@ -8,7 +8,7 @@
 #include <Scenes/World/world.h>
 #include <Common/constants.hpp>
 #include <Common/camera.cpp>
-#include <Common/grid.cpp>
+#include <Common/grid.h> 
 #include <Common/pathfinding/Pathfinder.h>
 #include <Entities/NPC/unit.cpp>
 
@@ -64,7 +64,7 @@ private:
     void Update(float deltaTime) {
         world.dynamicsWorld->stepSimulation(deltaTime, 10);
         for (auto& unit : units) {
-            unit.Update(deltaTime);
+            unit.Update(deltaTime, navGrid);
         }
         camera.Update();
     }
@@ -119,31 +119,6 @@ private:
         };
     }
 
-    Vector3 GridToWorld(int x, int z) {
-        return {
-            x * navGrid->cellSize + navGrid->cellSize / 2,
-            0,
-            z * navGrid->cellSize + navGrid->cellSize / 2
-        };
-    }
-
-    Vector2 WorldToGrid(Vector3 pos) {
-        return {
-            static_cast<float>(static_cast<int>(pos.x / navGrid->cellSize)),
-            static_cast<float>(static_cast<int>(pos.z / navGrid->cellSize))
-        };
-    }
-
-    std::vector<std::vector<int>> ConvertGridToIntMap(const Grid& grid) {
-        std::vector<std::vector<int>> intMap(grid.width, std::vector<int>(grid.height, 1));
-        for (int z = 0; z < grid.height; ++z) {
-            for (int x = 0; x < grid.width; ++x) {
-                intMap[x][z] = grid.cells[z][x].walkable ? 0 : 1;
-            }
-        }
-        return intMap;
-    }
-
     void DrawDebugGrid() {
         for (int z = 0; z < navGrid->height; z++) {
             for (int x = 0; x < navGrid->width; x++) {
@@ -160,24 +135,28 @@ private:
 
         BeginMode3D(camera);
         DrawGrid(20, 1.0f);
+
+        // Pathfinding Logic
         DrawDebugGrid();
         for (const auto& unit : units){
-            Vector2 startGrid = WorldToGrid(unit.position);
-            Vector2 goalGrid = WorldToGrid(unit.target);
+            Vector2 startGrid = navGrid->WorldToGrid(unit.position);
+            Vector2 goalGrid = navGrid->WorldToGrid(unit.target);
 
             Node startNode(static_cast<int>(startGrid.x), static_cast<int>(startGrid.y));
             Node goalNode(static_cast<int>(goalGrid.x), static_cast<int>(goalGrid.y));
 
-            auto intGrid = ConvertGridToIntMap(*navGrid);
+            auto intGrid = navGrid->ConvertGridToIntMap(*navGrid);
             std::vector<Node> path = FindPath(intGrid, startNode, goalNode);
 
             // Visualize path 
             for (const Node& node : path) {
-                Vector3 pos = GridToWorld(node.x, node.y);
+                Vector3 pos = navGrid->GridToWorld(node.x, node.y);
                 DrawCubeWires(pos, 1.0f, 0.1f, 1.0f, BLUE);
             }
            unit.Draw(); 
         } 
+
+
         EndMode3D();
 
         DrawText("3D Isometric RTS", 10, 10, 20, BLACK);
