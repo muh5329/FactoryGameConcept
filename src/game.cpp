@@ -96,6 +96,7 @@ private:
                     unit.moving = true;
                 }
             }
+            CalculateUnitsPath();
         }
     }
 
@@ -129,6 +130,20 @@ private:
         }
     }
 
+    void CalculateUnitsPath(){
+        for (auto& unit : units){
+            Vector2 startGrid = navGrid->WorldToGrid(unit.position);
+            Vector2 goalGrid = navGrid->WorldToGrid(unit.target);
+
+            Node startNode(static_cast<int>(startGrid.x), static_cast<int>(startGrid.y));
+            Node goalNode(static_cast<int>(goalGrid.x), static_cast<int>(goalGrid.y));
+
+            auto intGrid = navGrid->ConvertGridToIntMap(*navGrid);
+            std::vector<Node> path = FindPath(intGrid, startNode, goalNode);
+            unit.path = path;
+        } 
+    }
+
     void Draw() {
         BeginDrawing();
         ClearBackground(RAYWHITE);
@@ -139,17 +154,8 @@ private:
         // Pathfinding Logic
         DrawDebugGrid();
         for (const auto& unit : units){
-            Vector2 startGrid = navGrid->WorldToGrid(unit.position);
-            Vector2 goalGrid = navGrid->WorldToGrid(unit.target);
-
-            Node startNode(static_cast<int>(startGrid.x), static_cast<int>(startGrid.y));
-            Node goalNode(static_cast<int>(goalGrid.x), static_cast<int>(goalGrid.y));
-
-            auto intGrid = navGrid->ConvertGridToIntMap(*navGrid);
-            std::vector<Node> path = FindPath(intGrid, startNode, goalNode);
-
             // Visualize path 
-            for (const Node& node : path) {
+            for (const Node& node : unit.path) {
                 Vector3 pos = navGrid->GridToWorld(node.x, node.y);
                 DrawCubeWires(pos, 1.0f, 0.1f, 1.0f, BLUE);
             }
@@ -164,9 +170,6 @@ private:
         if (isDragging) {
             DrawRectangleDrag();
         }
-
-        
-
 
         EndDrawing();
 

@@ -5,6 +5,7 @@
 #include <btBulletDynamicsCommon.h>
 #include <Scenes/World/world.h>
 #include <Common/grid.h> 
+#include <Common/pathfinding/Pathfinder.h>
 // External constants and physics world assumed to be defined elsewhere
 extern float MOVE_SPEED;
 extern float JUMP_FORCE;
@@ -26,6 +27,7 @@ public:
     bool moving = false;
     bool attacking = false;
     int targetIndex = -1;
+    std::vector<Node> path;
 
     Unit(World* world) {
         position = { static_cast<float>(GetRandomValue(0, 10)), 0, static_cast<float>(GetRandomValue(0, 10)) };
@@ -37,63 +39,62 @@ public:
     void Update(float deltaTime, Grid* navGrid) {
         if (moving && body) {
             navGrid->cells[position.z][position.x].walkable = true;
-            
-            btVector3 velocity = body->getLinearVelocity();
-            btVector3 movement(0, velocity.getY(), 0); // Keep vertical component as-is 
 
-            Vector3 direction = { target.x - position.x, 0, target.z - position.z };
-            float length = std::sqrt(direction.x * direction.x + direction.z * direction.z);
-            if (length > 0.1f) {
+            btVector3 currentVelocity = body->getLinearVelocity();
+            btVector3 movement(0, currentVelocity.getY(), 0); // Preserve vertical velocity
 
-                direction.x /= length;
-                direction.z /= length;
-               
-                movement.setX(direction.x * Constants::UNIT_SPEED );
-                movement.setZ(direction.z * Constants::UNIT_SPEED );
-            } if (length < 0.3f && body->getLinearVelocity().length() < 0.2f) {
+            if (!path.empty()) {
+                Node nextNode = path.front();
+                Vector3 nextTarget = navGrid->GridToWorld(nextNode.x, nextNode.y);
+                target = nextTarget; // Update the target for reference
+
+                Vector3 direction = { nextTarget.x - position.x, 0, nextTarget.z - position.z };
+                float length = std::sqrt(direction.x * direction.x + direction.z * direction.z);
+                if (length > 0.1f) {
+                    direction.x /= length;
+                    direction.z /= length;
+                    movement.setX(direction.x * Constants::UNIT_SPEED);
+                    movement.setZ(direction.z * Constants::UNIT_SPEED);
+                } 
+                if (length < 0.3f && currentVelocity.length() < 0.2f) {
+                    // Node reached: remove it from the path
+                    path.erase(path.begin());
+                    // If no more nodes left, stop moving.
+                    if (path.empty()) {
+                        moving = false;
+                    }
+                }
+
+                // Apply movement force
+                btVector3 desiredVel(direction.x * Constants::UNIT_SPEED, currentVelocity.getY(), direction.z * Constants::UNIT_SPEED);
+                btVector3 currentVel = body->getLinearVelocity();
+                btVector3 steering = desiredVel - currentVel;
+                float maxForce = 20.0f;
+                if (steering.length() < maxForce) {
+                    steering = steering.normalized() * maxForce;
+                }
+                body->applyCentralForce(steering * body->getMass());
+            } else {
+                // If there are no nodes, ensure we are not marked as moving and update grid status
                 moving = false;
+                navGrid->cells[position.z][position.x].walkable = false;
             }
 
-            // Apply movement
-            btVector3 desiredVel(direction.x * Constants::UNIT_SPEED, velocity.getY(), direction.z * Constants::UNIT_SPEED);
-            btVector3 currentVel = body->getLinearVelocity();
-            btVector3 steering = desiredVel - currentVel;
-
-            // Allow stronger steering force, but avoid crazy impulses
-            float maxForce = 20.0f; // Try 20-50, tweak based on mass and friction
-            TraceLog(LOG_INFO, "maxForce %.2f, ",  steering.length());
-            if (steering.length() < maxForce) {
-                steering = steering.normalized() * maxForce;
-            }
-
-            body->applyCentralForce(steering * body->getMass());
-
-           
-
-             // Check for ground contact
+            // Check for ground contact
             btTransform trans;
             body->getMotionState()->getWorldTransform(trans);
-            
             float y = trans.getOrigin().getY();
+            grounded = (y <= Constants::GROUND_Y + height / 2.0f + 0.01f);
 
-            if (y <= Constants::GROUND_Y +  height / 2.0f + 0.01f) {
-                grounded = true;
-            } else {
-               grounded = false;
-            }
-            // TraceLog(LOG_INFO, "Set position: %.2f, %.2f %.2f",  btPos.getX(), btPos.getY(), btPos.getZ() );
-            // TraceLog(LOG_INFO, "Set velocity: %.2f, %.2f", movement.getX(), movement.getZ());
             // Sync Bullet position back to Raylib's Vector3
-             btVector3 btPos = trans.getOrigin();
-             position = { btPos.getX(), btPos.getY(), btPos.getZ() };
-
-            
-        
+            btVector3 btPos = trans.getOrigin();
+            position = { btPos.getX(), btPos.getY(), btPos.getZ() };
         } else {
             moving = false;
             navGrid->cells[position.z][position.x].walkable = false;
         }
     }
+
 
     void Draw() const {
         Color color = selected ? RED : BLUE;
