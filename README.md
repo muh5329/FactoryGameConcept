@@ -58,6 +58,11 @@ Link Library to CmakeList.txt BULLET_DIR src
  -- On MacOsx --
 brew install raylib
 
+## Change Makefile and CMakeFile Lib Paths
+ - Change set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/")
+### MakeFile
+- Change core path /Users/muneebhaq/Documents/projects/FactoryGameConcept
+
 ## Build Steps
 
 mkdir build

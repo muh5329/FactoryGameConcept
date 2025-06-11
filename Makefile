@@ -57,9 +57,11 @@ RM = /opt/homebrew/Cellar/cmake/3.29.0/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
+# CHANGE THIS TO YOUR SOURCE DIRECTORY
 CMAKE_SOURCE_DIR = /Users/muneebhaq/Documents/projects/FactoryGameConcept
 
 # The top-level build directory on which CMake was run.
+# CHANGE THIS TO YOUR SOURCE DIRECTORY
 CMAKE_BINARY_DIR = /Users/muneebhaq/Documents/projects/FactoryGameConcept
 
 #=============================================================================
@@ -87,9 +89,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles /Users/muneebhaq/Documents/projects/FactoryGameConcept//CMakeFiles/progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start $(CMAKE_SOURCE_DIR)/CMakeFiles $(CMAKE_SOURCE_DIR)/CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start /Users/muneebhaq/Documents/projects/FactoryGameConcept/CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start $(CMAKE_SOURCE_DIR)/CMakeFiles 0
 .PHONY : all
 
 # The main clean target

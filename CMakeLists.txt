@@ -14,6 +14,7 @@ include_directories(${CMAKE_SOURCE_DIR}/include)
 include_directories(${CMAKE_SOURCE_DIR}/src)
 
 # Bullet Physics
+# CHANGE THIS TO YOUR SOURCE DIRECTORY for your Bullet Install
 set(BULLET_DIR "/Users/muneebhaq/Documents/projects/c_lib/bullet3/install/")
 include_directories(${BULLET_DIR}/include/bullet) 
 link_directories(${BULLET_DIR}/lib)
