@@ -26,6 +26,7 @@ make run
 [Precursor](blog/001.md)
 [ReCast](blog/002.md)
 [A* Pathfinding](blog/003.md)
+[Pathfinding optimization](blog/004.md)
 
 ## Docs 
 [a* Algorithm](src/Common/pathfinding/a_*.MD)
