@@ -29,6 +29,10 @@ public:
     int targetIndex = -1;
     std::vector<Node> path;
 
+    // Async Support
+    bool pathRequested = false;
+    std::future<std::vector<Node>> futurePath;
+
     Unit(World* world) {
         position = { static_cast<float>(GetRandomValue(0, 10)), 0, static_cast<float>(GetRandomValue(0, 10)) };
         position = { position.x, Constants::GROUND_Y + height / 2.0f + 0.1f, position.z }; // Displace unit slightly above ground to prevent floating point issues
@@ -37,6 +41,8 @@ public:
     }
 
     void Update(float deltaTime, Grid* navGrid) {
+        CheckPathReady()
+
         if (moving && body) {
             navGrid->cells[position.z][position.x].walkable = true;
 
@@ -95,6 +101,28 @@ public:
         }
     }
 
+    void RequestPath(Grid* navGrid) {
+        for (auto& unit : units) {
+            Vector2 startGrid = navGrid->WorldToGrid(unit.position);
+            Vector2 goalGrid = navGrid->WorldToGrid(unit.target);
+
+            Node startNode(static_cast<int>(startGrid.x), static_cast<int>(startGrid.y));
+            Node goalNode(static_cast<int>(goalGrid.x), static_cast<int>(goalGrid.y));
+
+            auto intGrid = navGrid->ConvertGridToIntMap(*navGrid);
+            std::vector<Node> path = FindPath(intGrid, startNode, goalNode);
+            futurePath = std::async(std::launch::async, FindPath, intGrid, startGrid, goalNode)
+            pathRequested = true;
+        }
+    }
+
+    void CheckPathReady() {
+        if (pathRequested && futurePath.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
+            path = futurePath.get()
+            pathRequested = false;
+            moving = true;
+        }
+    }
 
     void Draw() const {
         Color color = selected ? RED : BLUE;
