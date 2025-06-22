@@ -94,9 +94,9 @@ private:
                 if (unit.selected) {
                     unit.target = groundPoint;
                     unit.moving = true;
+                    unit.RequestPath(navGrid);
                 }
             }
-            CalculateUnitsPath();
         }
     }
 
@@ -129,9 +129,7 @@ private:
             }
         }
     }
-
     
-
     void Draw() {
         BeginDrawing();
         ClearBackground(RAYWHITE);

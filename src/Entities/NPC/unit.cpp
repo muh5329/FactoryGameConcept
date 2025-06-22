@@ -6,6 +6,7 @@
 #include <Scenes/World/world.h>
 #include <Common/grid.h> 
 #include <Common/pathfinding/Pathfinder.h>
+#include <future>
 // External constants and physics world assumed to be defined elsewhere
 extern float MOVE_SPEED;
 extern float JUMP_FORCE;
@@ -41,7 +42,7 @@ public:
     }
 
     void Update(float deltaTime, Grid* navGrid) {
-        CheckPathReady()
+        CheckPathReady();
 
         if (moving && body) {
             navGrid->cells[position.z][position.x].walkable = true;
@@ -102,23 +103,22 @@ public:
     }
 
     void RequestPath(Grid* navGrid) {
-        for (auto& unit : units) {
-            Vector2 startGrid = navGrid->WorldToGrid(unit.position);
-            Vector2 goalGrid = navGrid->WorldToGrid(unit.target);
+        
+        Vector2 startGrid = navGrid->WorldToGrid(position);
+        Vector2 goalGrid = navGrid->WorldToGrid(target);
 
-            Node startNode(static_cast<int>(startGrid.x), static_cast<int>(startGrid.y));
-            Node goalNode(static_cast<int>(goalGrid.x), static_cast<int>(goalGrid.y));
+        Node startNode(static_cast<int>(startGrid.x), static_cast<int>(startGrid.y));
+        Node goalNode(static_cast<int>(goalGrid.x), static_cast<int>(goalGrid.y));
 
-            auto intGrid = navGrid->ConvertGridToIntMap(*navGrid);
-            std::vector<Node> path = FindPath(intGrid, startNode, goalNode);
-            futurePath = std::async(std::launch::async, FindPath, intGrid, startGrid, goalNode)
-            pathRequested = true;
-        }
+        auto intGrid = navGrid->ConvertGridToIntMap(*navGrid);
+        futurePath = std::async(std::launch::async, FindPath, intGrid, startNode, goalNode);
+        pathRequested = true;
+        
     }
 
     void CheckPathReady() {
-        if (pathRequested && futurePath.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
-            path = futurePath.get()
+        if (pathRequested && futurePath.wait_for(std::chrono::milliseconds(1)) == std::future_status::ready) {
+            path = futurePath.get();
             pathRequested = false;
             moving = true;
         }

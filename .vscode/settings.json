@@ -48,6 +48,8 @@
         "typeinfo": "cpp",
         "unordered_map": "cpp",
         "variant": "cpp",
-        "algorithm": "cpp"
+        "algorithm": "cpp",
+        "future": "cpp",
+        "forward_list": "cpp"
     }
 }
