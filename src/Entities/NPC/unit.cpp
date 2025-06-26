@@ -41,6 +41,23 @@ public:
         CreateUnit(world);
     }
 
+    ~Unit() {
+        if (body) {
+            // Remove from dynamics world first
+            dynamicsWorld->removeRigidBody(body);
+
+            // Clean up subobjects
+            btMotionState* motionState = body->getMotionState();
+            btCollisionShape* shape = body->getCollisionShape();
+
+            delete body;
+            delete motionState;
+            delete shape;
+
+            body = nullptr;
+        }
+    }
+
     void Update(float deltaTime, Grid* navGrid) {
         CheckPathReady();
 
