@@ -21,9 +21,6 @@ bool Node::operator==(const Node& other) const {
     return x == other.x && y == other.y;
 }
 
-// pathfinding algorithm (FindPath)  expects a std::vector<std::vector<int>> 2D grid, where each cell contains:
-//0 for walkable space
-//non-zero (e.g., 1) for obstacles
 
 vector<Node> FindPath(const vector<vector<int>>& graph, const Node& start, const Node& goal) {
     const int directionX[] = {-1, 0, 1, 0};
