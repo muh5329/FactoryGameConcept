@@ -21,4 +21,6 @@ public:
     Vector3 GridToWorld(int x, int z);
     Vector2 WorldToGrid(Vector3 pos);
     std::vector<std::vector<int>> ConvertGridToIntMap(const Grid& grid);
+    Vector3 HexToWorld(int q, int r, float size = 1.0f);
+    Vector2 WorldToHex(Vector3 pos, float size = 1.0f);
 };
