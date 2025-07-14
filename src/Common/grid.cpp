@@ -44,17 +44,17 @@ Vector2 Grid::WorldToGrid(Vector3 pos) {
 }
 
 
-Vector3 Grid::HexToWorld(int q, int r, float size = 1.0f) {
-    float x = size * sqrtf(3.0f) * (q + r / 2.0f);
-    float z = size * 1.5f * r;
-    return { x, 0.0f, z };
-}
+// Vector3 Grid::HexToWorld(int q, int r, float size = 1.0f) {
+//     float x = size * sqrtf(3.0f) * (q + r / 2.0f);
+//     float z = size * 1.5f * r;
+//     return { x, 0.0f, z };
+// }
 
-Vector2 Grid::WorldToHex(Vector3 pos, float size = 1.0f) {
-    float q = (sqrtf(3)/3 * pos.x - 1.0f/3 * pos.z) / size;
-    float r = (2.0f/3 * pos.z) / size;
-    return { q, r }; // Then round to nearest hex
-}
+// Vector2 Grid::WorldToHex(Vector3 pos, float size = 1.0f) {
+//     float q = (sqrtf(3)/3 * pos.x - 1.0f/3 * pos.z) / size;
+//     float r = (2.0f/3 * pos.z) / size;
+//     return { q, r }; 
+// }
 
 
 std::vector<std::vector<int>> Grid::ConvertGridToIntMap(const Grid& grid) {
