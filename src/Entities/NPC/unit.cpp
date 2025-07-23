@@ -16,6 +16,13 @@ extern btDiscreteDynamicsWorld* dynamicsWorld;
 
 class Unit {
 public:
+   
+    Unit(const Unit&) = delete;
+    Unit& operator=(const Unit&) = delete;
+
+    // Allow moving
+    Unit(Unit&&) = default;
+    Unit& operator=(Unit&&) = default;
     bool active = true;
     Vector3 position{};
     Vector3 target{};
@@ -59,7 +66,7 @@ public:
     }
 
     void Update(float deltaTime, Grid* navGrid) {
-        CheckPathReady();
+        CheckPathReady(navGrid);
 
         if (moving && body) {
             navGrid->cells[position.z][position.x].walkable = true;
@@ -133,57 +140,16 @@ public:
         
     }
 
-    void CheckPathReady() {
+    void CheckPathReady(Grid* navGrid) {
         if (pathRequested && futurePath.wait_for(std::chrono::milliseconds(1)) == std::future_status::ready) {
             auto foundPath = futurePath.get();
-            path = SmoothPath(foundPath);
+            path = SmoothPath(foundPath, navGrid);
             pathRequested = false;
             moving = true;
         }
     }
 
-    // Path smoothing: removes unnecessary waypoints by checking line of sight between nodes
-    std::vector<Node> SmoothPath(const std::vector<Node>& inputPath) {
-        if (inputPath.size() <= 2) return inputPath;
-        std::vector<Node> smoothed;
-        size_t i = 0;
-        while (i < inputPath.size()) {
-            smoothed.push_back(inputPath[i]);
-            size_t furthest = i + 1;
-            for (size_t j = inputPath.size() - 1; j > i; --j) {
-                if (HasLineOfSight(inputPath[i], inputPath[j])) {
-                    furthest = j;
-                    break;
-                }
-            }
-            i = furthest;
-        }
-        // Ensure last node is included
-        if (smoothed.back().x != inputPath.back().x || smoothed.back().y != inputPath.back().y)
-            smoothed.push_back(inputPath.back());
-        return smoothed;
-    }
-
-    // Checks if a straight line between two nodes is walkable (no obstacles)
-    bool HasLineOfSight(const Node& a, const Node& b) {
-        // Bresenham's line algorithm for grid traversal
-        int x0 = a.x, y0 = a.y, x1 = b.x, y1 = b.y;
-        int dx = abs(x1 - x0), dy = abs(y1 - y0);
-        int sx = x0 < x1 ? 1 : -1;
-        int sy = y0 < y1 ? 1 : -1;
-        int err = dx - dy;
-        int x = x0, y = y0;
-        while (true) {
-            if (!IsWalkable(x, y)) return false;
-            if (x == x1 && y == y1) break;
-            int e2 = 2 * err;
-            if (e2 > -dy) { err -= dy; x += sx; }
-            if (e2 < dx) { err += dx; y += sy; }
-        }
-        return true;
-    }
-
-    // Checks if a grid cell is walkable (no obstacle)
+   
     // Checks if a grid cell is walkable (no obstacle) using navGrid
     bool IsWalkable(int x, int y, Grid* navGrid) {
         // Bounds check
