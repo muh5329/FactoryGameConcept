@@ -12,17 +12,14 @@ extern float MOVE_SPEED;
 extern float JUMP_FORCE;
 extern float GRAVITY;
 extern float GROUND_Y;
-extern btDiscreteDynamicsWorld* dynamicsWorld;
 
 class Unit {
 public:
-   
-    Unit(const Unit&) = delete;
-    Unit& operator=(const Unit&) = delete;
-
-    // Allow moving
+  
     Unit(Unit&&) = default;
     Unit& operator=(Unit&&) = default;
+
+    World* world = nullptr;
     bool active = true;
     Vector3 position{};
     Vector3 target{};
@@ -36,31 +33,31 @@ public:
     bool attacking = false;
     int targetIndex = -1;
     std::vector<Node> path;
-
-    // Async Support
     bool pathRequested = false;
     std::future<std::vector<Node>> futurePath;
 
-    Unit(World* world) {
+    Unit(World* world_) : world(world_) {
+        printf("[Unit] Constructor: world=%p\n", world);
         position = { static_cast<float>(GetRandomValue(0, 10)), 0, static_cast<float>(GetRandomValue(0, 10)) };
-        position = { position.x, Constants::GROUND_Y + height / 2.0f + 0.1f, position.z }; // Displace unit slightly above ground to prevent floating point issues
+        position = { position.x, Constants::GROUND_Y + height / 2.0f + 0.1f, position.z };
         target = position;
         CreateUnit(world);
     }
 
     ~Unit() {
+        printf("[Unit] Destructor: world=%p, body=%p\n", world, body);
         if (body) {
-            // Remove from dynamics world first
-            dynamicsWorld->removeRigidBody(body);
-
-            // Clean up subobjects
+            if (world && world->dynamicsWorld) {
+                printf("[Unit] Removing rigid body from dynamicsWorld=%p\n", world->dynamicsWorld);
+                world->dynamicsWorld->removeRigidBody(body);
+            } else {
+                printf("[Unit] WARNING: world or dynamicsWorld is null!\n");
+            }
             btMotionState* motionState = body->getMotionState();
             btCollisionShape* shape = body->getCollisionShape();
-
+            if (motionState) delete motionState;
+            if (shape) delete shape;
             delete body;
-            delete motionState;
-            delete shape;
-
             body = nullptr;
         }
     }
